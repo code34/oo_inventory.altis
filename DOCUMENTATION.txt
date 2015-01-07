@@ -1,0 +1,78 @@
+	/*
+	Author: code34 nicolas_boiteux@yahoo.fr
+	Copyright (C) 2014-2015 Nicolas BOITEUX
+
+	CLASS OO_INVENTORY simple save/restory inventory class
+	
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+	*/
+
+
+	/*
+		Function: _inventory = ["new", []] call OO_INVENTORY;
+		create a new OO_INVENTORY object
+		
+		Parameters:
+			array - empty array (or old inventory if you want to restore from a media or other)
+	*/
+
+
+	/*
+		Function: = ["load", player] call _inventory;
+		Load inventory on the object
+		
+		Parameters:
+			- object - object who will load the inventory
+	*/
+
+	/*
+		Function: = "getInventory" call _inventory;
+		Return an array containing the inventory
+		
+		Parameters:
+			none
+	*/
+
+	/*
+		Function: = ["setInventory", array] call _inventory;
+		Set the contents of inventory
+		
+		Parameters:
+			array - set the inventory with array
+	*/	
+
+	/*
+		Function: = ["save", player] call _inventory;
+		Save the inventory from the object
+		
+		Parameters:
+			- object - objet source from we will save the inventory
+	*/
+
+
+	/*
+		Function: = ["clear", player] call _inventory;
+		clear the inventory of object
+		
+		Parameters:
+			- object - objet who will clear the inventory
+	*/	
+
+	/*
+		Function: = ["delete", _inventory] call OO_INVENTORY;
+		delete the OO_INVENTORY object
+		
+		Parameters:
+			OO_INVENTORY object to delete
+	*/	
