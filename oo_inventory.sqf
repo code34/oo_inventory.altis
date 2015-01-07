@@ -41,7 +41,7 @@
 		
 		PUBLIC FUNCTION("array","setInventory") {
 			MEMBER("inventory", _this);
-		}
+		};
 
 		PUBLIC FUNCTION("object","save") {
 			private ["_DB", "_result", "_array"];
@@ -64,10 +64,7 @@
 				(handgunWeapon _this),
 				(handgunItems _this),
 				(handgunMagazine _this),
-				(assignedItems _this),
-				(getposatl _this),
-				(damage _this),
-				(getdir _this)
+				(assignedItems _this)
 			];
 			MEMBER("inventory", _array);
 		};
@@ -98,13 +95,7 @@
 			_handgunweaponitems = _array select 15;
 			_handgunweaponmagazine = _array select 16;
 			_assigneditems = _array select 17;
-			_position = _array select 18;
-			_damage = _array select 19;
-			_dir = _array select 20;
 
-			_this setposatl _position;
-			_this setdamage _damage;
-			_this setdir _dir;
 			_this addHeadgear _headgear;
 			_this forceAddUniform _uniform;
 			_this addGoggles _goggles;
@@ -189,7 +180,7 @@
 			true;
 		};
 
-		PUBLIC FUNCTION("array","deconstructor") {
+		PUBLIC FUNCTION("","deconstructor") {
 			DELETE_VARIABLE("inventory");
 		 };
 	ENDCLASS;
