@@ -18,7 +18,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 	*/
 
-	Create a dynamic camer in a windows box / or textured object
+	Create an inventory object to load/save unit inventory
 	
 	Usage:
 		put the "oo_inventory.sqf" and the "oop.h" files in your mission directory
