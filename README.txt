@@ -21,9 +21,9 @@
 	Create a dynamic camer in a windows box / or textured object
 	
 	Usage:
-		put the "oo_camera.sqf" and the "oop.h" files in your mission directory
+		put the "oo_inventory.sqf" and the "oop.h" files in your mission directory
 		put this code into your mission init.sqf
-		call compilefinal preprocessFileLineNumbers "oo_camera.sqf";
+		call compilefinal preprocessFileLineNumbers "oo_inventory.sqf";
 
 	See example mission in directory: init.sqf
 	
