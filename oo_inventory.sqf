@@ -147,7 +147,19 @@
 			MEMBER("unit", nil) addBackpack (backpack MEMBER("unit", nil));
 			removeBackpack MEMBER("unit", nil);
 		};
-	
+
+		PUBLIC FUNCTION("","takeOffPrimaryWeapon") {
+			MEMBER("unit", nil) removeWeaponGlobal (primaryWeapon MEMBER("unit", nil));
+		};
+
+		PUBLIC FUNCTION("","takeOffSecondaryWeapon") {
+			MEMBER("unit", nil) removeWeaponGlobal (secondaryWeapon MEMBER("unit", nil));
+		};
+
+		PUBLIC FUNCTION("","takeOffHandGun") {
+			MEMBER("unit", nil) removeWeaponGlobal (handgunWeapon MEMBER("unit", nil));
+		};
+
 		PUBLIC FUNCTION("","getInventory") {
 			private ["_array", "_unit"];
 			
@@ -322,7 +334,7 @@
 			_ammo;
 		};
 
-		PUBLIC FUNCTION("string","getAmmoTotalCount") {
+		PUBLIC FUNCTION("string","getAmmoCountByType") {
 			private ["_count", "_type"];
 
 			_type = _this;
@@ -337,10 +349,11 @@
 			_count;
 		};
 
-		PUBLIC FUNCTION("string","getMagazinesCount") {
+		PUBLIC FUNCTION("string","getMagazinesCountByType") {
 			private ["_count", "_type"];
 
 			_type = _this;
+
 			_count = 0;
 
 			{
@@ -350,6 +363,33 @@
 				sleep 0.001;
 			}foreach (magazinesAmmoFull MEMBER("unit", nil));
 			_count;
+		};
+
+		PUBLIC FUNCTION("string","getAmmoCountByWeapon") {
+			private ["_count", "_type"];
+
+			_count = 0;
+
+			switch (tolower _this) do {
+				case "primaryweapon" : {
+					_type = (primaryWeaponMagazine MEMBER("unit", nil)) select 0;
+				};
+
+				case "secondaryweapon" : {
+					_type = (secondaryWeaponMagazine MEMBER("unit", nil)) select 0;
+				};
+
+				case "handgun" : {
+					_type = (handgunMagazine MEMBER("unit", nil)) select 0;
+				};
+
+				default {
+					_type = (primaryWeaponMagazine MEMBER("unit", nil)) select 0;
+				};
+			};
+
+			if(isnil "_type") then {_type = "";};
+			MEMBER("getAmmoCountByType", _type);
 		};
 
 		PUBLIC FUNCTION("string","getAmmoLoadedCount") {
