@@ -18,61 +18,82 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 	*/
 
+	--------------------------------------------------------------------------------------------------------------
 
-	/*
-		Function: _inventory = ["new", []] call OO_INVENTORY;
-		create a new OO_INVENTORY object
+	Function: _inventory = ["new", []] call OO_INVENTORY;
+	create a new OO_INVENTORY object
 		
-		Parameters:
-			array - empty array (or old inventory if you want to restore from a media or other)
-	*/
+	Parameters:
+		array - empty array
 
+	--------------------------------------------------------------------------------------------------------------
 
-	/*
-		Function: = ["load", player] call _inventory;
-		Load inventory on the object
+	Function: = ["getInventory", _object] call _inventory;
+	Get inventory of the unit object
 		
-		Parameters:
-			- object - object who will load the inventory
-	*/
+	Parameters:
+		_object -  unit object who will load the inventory
 
-	/*
-		Function: = "getInventory" call _inventory;
-		Return an array containing the inventory
+	Return : Array containing :
+		0 - headgear
+		1 - goggles
+		2 - uniform
+		3 - uniformitems
+		4 - vest
+		5 - vestitems
+		6 - backpack
+		7 - backpackitems
+		8 - magazinesAmmoFull
+		9 - primaryweapon
+		10 - primaryweaponitems
+		11 - secondaryweapon
+		12 - secondaryweaponitems
+		13 - handgunweapon
+		14- handgunitems
+		15- assigneditems
+
+	--------------------------------------------------------------------------------------------------------------
+	
+	Function: ["setInventory", _array] call _inventory;
+	Set inventory of the unit object
 		
-		Parameters:
-			none
-	*/
+	Parameters:
+		_array containing :
+		0 - unit object - object who will load the inventory
+		1 - inventory array containing :
+			0 - headgear
+			1 - goggles
+			2 - uniform
+			3 - uniformitems
+			4 - vest
+			5 - vestitems
+			6 - backpack
+			7 - backpackitems
+			8 - magazinesAmmoFull
+			9 - primaryweapon
+			10 - primaryweaponitems
+			11 - secondaryweapon
+			12 - secondaryweaponitems
+			13 - handgunweapon
+			14- handgunitems
+			15- assigneditems
 
-	/*
-		Function: = ["setInventory", array] call _inventory;
-		Set the contents of inventory
+	Return : nothing
+
+	--------------------------------------------------------------------------------------------------------------
+	
+	Function: ["clearInventory", _object] call _inventory;
+	Clear inventory of the unit object
+	
+	Parameters:
+		_object -  unit object who will load the inventory
+	
+	Return : nothing
+
+	--------------------------------------------------------------------------------------------------------------
+
+	Function: = ["delete", _inventory] call OO_INVENTORY;
+	destroy the OO_INVENTORY object
 		
-		Parameters:
-			array - set the inventory with array
-	*/	
-
-	/*
-		Function: = ["save", player] call _inventory;
-		Save the inventory from the object
-		
-		Parameters:
-			- object - objet source from we will save the inventory
-	*/
-
-
-	/*
-		Function: = ["clear", player] call _inventory;
-		clear the inventory of object
-		
-		Parameters:
-			- object - objet who will clear the inventory
-	*/	
-
-	/*
-		Function: = ["delete", _inventory] call OO_INVENTORY;
-		delete the OO_INVENTORY object
-		
-		Parameters:
-			OO_INVENTORY object to delete
-	*/	
+	Parameters:
+		_inventory - OO_INVENTORY object to delete

@@ -1,8 +1,8 @@
 	/*
 	Author: code34 nicolas_boiteux@yahoo.fr
-	Copyright (C) 2013 Nicolas BOITEUX
+	Copyright (C) 2013-2016 Nicolas BOITEUX
 
-	CLASS OO_INVENTORY simple save/restory inventory class
+	CLASS OO_INVENTORY simple inventory class
 	
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -21,13 +21,11 @@
 	#include "oop.h"
 
 	CLASS("OO_INVENTORY")
-		PRIVATE VARIABLE("array","inventory");
-
 		PUBLIC FUNCTION("array","constructor") { 
-			MEMBER("inventory", _this);
+			
 		};
 
-		PUBLIC FUNCTION("object","clear") {
+		PUBLIC FUNCTION("object","clearInventory") {
 			removeallweapons _this;
 			removeGoggles _this;
 			removeHeadgear _this;
@@ -36,15 +34,9 @@
 			removeAllAssignedItems _this;
 			removeBackpack _this;
 		};
-
-		PUBLIC FUNCTION("","getInventory") FUNC_GETVAR("inventory");
-		
-		PUBLIC FUNCTION("array","setInventory") {
-			MEMBER("inventory", _this);
-		};
-
-		PUBLIC FUNCTION("object","save") {
-			private ["_DB", "_result", "_array"];
+	
+		PUBLIC FUNCTION("object","getInventory") {
+			private ["_array"];
 
 			_array = [
 				(headgear _this), 
@@ -55,27 +47,25 @@
 				(VestItems _this), 
 				(backpack _this), 
 				(backpackItems _this), 
+				(magazinesAmmoFull _this),
 				(primaryWeapon _this), 
 				(primaryWeaponItems _this),
-				(primaryWeaponMagazine _this),
 				(secondaryWeapon _this),
 				(secondaryWeaponItems _this),
-				(secondaryWeaponMagazine _this),
 				(handgunWeapon _this),
 				(handgunItems _this),
-				(handgunMagazine _this),
 				(assignedItems _this)
 			];
-			MEMBER("inventory", _array);
+			_array;
 		};
 
-		PUBLIC FUNCTION("object","load") {
-			private ["_temp", "_array", "_headgear", "_goggles", "_uniform", "_uniformitems", "_vest", "_vestitems", "_backpack", "_backpackitems", "_primaryweapon", "_primaryweaponitems", "_primaryweaponmagazine", "_secondaryweapon", "_secondaryweaponitems", "_secondaryweaponmagazine", "_handgun", "_handgunweaponitems", "_handgunweaponmagazine", "_assigneditems", "_position", "_damage", "_dir"];
+		PUBLIC FUNCTION("array","setInventory") {
+			private ["_array", "_headgear", "_goggles", "_uniform", "_uniformitems", "_vest", "_vestitems", "_backpack", "_backpackitems", "_primaryweapon", "_primaryweaponitems", "_secondaryweapon", "_secondaryweaponitems",  "_handgun", "_handgunweaponitems", "_assigneditems", "_position", "_damage", "_dir"];
 
-			_array = MEMBER("inventory", nil);
-			if(count _array == 0) exitwith {false;};
+			_object = _this select 0;
+			_array = _this select 1;
 			
-			MEMBER("clear", _this);
+			MEMBER("clearInventory", _this);
 
 			_headgear = _array select 0;
 			_goggles = _array select 1;
@@ -85,49 +75,46 @@
 			_vestitems = _array select 5;
 			_backpack = _array select 6;
 			_backpackitems = _array select 7;
-			_primaryweapon = _array select 8;
-			_primaryweaponitems = _array select 9;
-			_primaryweaponmagazine = _array select 10;
+			_fullmagazine = _array select 8;
+			_primaryweapon = _array select 9;
+			_primaryweaponitems = _array select 10;
 			_secondaryweapon = _array select 11;
 			_secondaryweaponitems = _array select 12;
-			_secondaryweaponmagazine = _array select 13;
-			_handgunweapon = _array select 14;
-			_handgunweaponitems = _array select 15;
-			_handgunweaponmagazine = _array select 16;
-			_assigneditems = _array select 17;
+			_handgunweapon = _array select 13;
+			_handgunweaponitems = _array select 14;
+			_assigneditems = _array select 15;
 
 			_this addHeadgear _headgear;
 			_this forceAddUniform _uniform;
 			_this addGoggles _goggles;
 			_this addVest _vest;
 
-
 			{
-				if(_x != "") then {
+				if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
 					_this addItemToUniform _x;
 				};
 			}foreach _uniformitems;
 	
 			{
-				if(_x != "") then {
+				if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
 					_this addItemToVest _x;
 				};
 			}foreach _vestitems;
 	
-			if(format["%1", _backpack] != "") then {
+			if!(_backpack isEqualTo "") then {
 				_this addbackpack _backpack;
 				{
-					if(_x != "") then {
+					if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
 						_this addItemToBackpack _x;
 					};
 				} foreach _backpackitems;
 			};
 	
 			{
-				if(_x != "") then {
-					_this addMagazine _x;
+				if!(_x isEqualTo "") then {
+					_this addMagazine [_x select 0, _x select 1];
 				};
-			} foreach _primaryweaponmagazine;
+			} foreach _fullmagazine;
 
 			//must be after assign items to secure loading mags
 			_this addweapon _primaryweapon;
@@ -137,12 +124,6 @@
 					_this addPrimaryWeaponItem _x;
 				};
 			} foreach _primaryweaponitems;
-	
-			{
-				if(_x != "") then {
-					_this addMagazine _x;
-				};
-			} foreach _secondaryweaponmagazine;
 
 			_this addweapon _secondaryweapon;
 	
@@ -152,12 +133,6 @@
 				};
 			} foreach _secondaryweaponitems;
 	
-	
-			{
-				if(_x != "") then {
-					_this addMagazine _x;
-				};
-			} foreach _handgunweaponmagazine;
 
 			_this addweapon _handgunweapon;
 	
@@ -174,13 +149,10 @@
 				};
 			} foreach _assigneditems;
 
-			_this addWeapon "ItemGPS";
-
-			if (needReload player == 1) then {reload player};
-			true;
+			if (needReload _this == 1) then {reload _this};
 		};
 
 		PUBLIC FUNCTION("","deconstructor") {
-			DELETE_VARIABLE("inventory");
+			
 		 };
 	ENDCLASS;
