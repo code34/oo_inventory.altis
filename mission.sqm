@@ -72,7 +72,7 @@ class Mission
 					azimut=180;
 					id=1;
 					side="WEST";
-					vehicle="B_soldier_AA_F";
+					vehicle="B_soldier_AT_F";
 					leader=1;
 					skill=0.60000002;
 					text="toto";
