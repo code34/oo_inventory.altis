@@ -3,16 +3,47 @@
 	// create a new inventory 
 	_inventory = ["new", toto] call OO_INVENTORY;
 
+	// get uniform
+	_result = "getUniformItems" call _inventory;
+	hint format ["Uniform Items: %1 ", _result];
+	sleep 2;	
+
+	// get uniform
+	_result = "getUniformWeapons" call _inventory;
+	hint format ["Uniform Weapons: %1 ", _result];
+	sleep 2;	
+
+	// get vest
+	_result = "getVestItems" call _inventory;
+	hint format ["Vest Items: %1 ", _result];
+	sleep 2;	
+
+	// get vest
+	_result = "getVestWeapons" call _inventory;
+	hint format ["Vest Weapons: %1 ", _result];
+	sleep 2;		
+
+	hint "AI spend 1 bullet";
 	toto fire ("getPrimaryWeaponType" call _inventory);
 	sleep 2;
 
 	hint format ["Secondary ammo type %1 count %2", ["getAmmoLoadedType", "secondaryweapon"] call _inventory, ["getAmmoLoadedCount", "secondaryweapon"] call _inventory];
 	sleep 2;
 
+	_type = ["getAmmoLoadedType", "primaryweapon"] call _inventory;
+	_result =  ["getAmmoTotalCount", _type] call _inventory;
+	hint format ["primary ammos total count %1",_result];
+	sleep 2;
+
+	_result =  ["getMagazinesCount", _type] call _inventory;
+	hint format ["primary magazines count %1",_result];
+	sleep 2;
+
 	toto fire ("getHandGunType" call _inventory);
 	sleep 2;
 
 	// get Backpack
+	toto addItemToBackpack "itemGPS";
 	_result = "getBackPackItems" call _inventory;
 	hint format ["Backpack Items: %1 ", _result];
 	sleep 2;	
@@ -98,6 +129,28 @@
 	hint format ["has Head Gear %1", _result];
 	sleep 2;
 
+	// clear inventory
+	"clearBackPack" call _inventory;
+ 	"clearBackpackItems" call _inventory;	
+ 	"clearBackpackWeapons" call _inventory;
+
+	"clearVest" call _inventory;
+	"clearVestItems" call _inventory;
+	"clearVestWeapons" call _inventory;
+	
+	"clearUniform" call _inventory;	
+	"clearUniformItems" call _inventory;
+	"clearUniformWeapons" call _inventory;
+	hint "clear Backpack + vest + uniform";
+	sleep 2;	
+
+	"takeOffVest" call _inventory;
+	"takeOffUniform" call _inventory;
+	"takeOffBackPack" call _inventory;
+	hint "take off vest, uniform, backpack";
+	sleep 2;
+
+
 	["setUnit", tata] call _inventory;
 	hint "change to next unit";
 	sleep 2;
@@ -111,5 +164,7 @@
 	["setInventory", _array] call _inventory;
 	hint "set same Inventory as first unit";
 	sleep 2;
+
+
 
 
