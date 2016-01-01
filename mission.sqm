@@ -12,7 +12,6 @@ class Mission
 	{
 		"A3_Characters_F_BLUFOR",
 		"a3_characters_f",
-		"A3_Characters_F_Civil",
 		"a3_map_altis"
 	};
 	randomSeed=7374927;
@@ -62,17 +61,17 @@ class Mission
 		};
 		class Item1
 		{
-			side="CIV";
+			side="WEST";
 			class Vehicles
 			{
 				items=1;
 				class Item0
 				{
-					position[]={9138.0654,15.079368,21612.977};
+					position[]={9138.1016,15.072805,21613.188};
 					azimut=180;
 					id=1;
-					side="CIV";
-					vehicle="C_Orestes";
+					side="WEST";
+					vehicle="B_soldier_AA_F";
 					leader=1;
 					skill=0.60000002;
 					text="toto";
