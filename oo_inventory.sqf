@@ -71,7 +71,7 @@
 			_array;
 		};
 
-		PUBLIC FUNCTION("","getPrimaryWeapon") {
+		PUBLIC FUNCTION("","getPrimaryWeaponType") {
 			private ["_unit"];
 
 			_unit = MEMBER("unit", nil);
@@ -79,7 +79,7 @@
 			primaryWeapon _unit;
 		};
 
-		PUBLIC FUNCTION("","getSecondaryWeapon") {
+		PUBLIC FUNCTION("","getSecondaryWeaponType") {
 			private ["_unit"];
 
 			_unit = MEMBER("unit", nil);
@@ -87,7 +87,7 @@
 			secondaryWeapon _unit;
 		};
 
-		PUBLIC FUNCTION("","getHandGun") {
+		PUBLIC FUNCTION("","getHandGunType") {
 			private ["_unit"];
 
 			_unit = MEMBER("unit", nil);
@@ -95,7 +95,7 @@
 			handgunWeapon _unit;
 		};
 
-		PUBLIC FUNCTION("","getBackPack") {
+		PUBLIC FUNCTION("","getBackPackType") {
 			private ["_unit"];
 
 			_unit = MEMBER("unit", nil);
@@ -103,7 +103,50 @@
 			backpack _unit;
 		};
 
-		PUBLIC FUNCTION("string","getAmmoType") {
+		PUBLIC FUNCTION("","getBackPack") {
+			private ["_unit"];
+
+			_unit = MEMBER("unit", nil);
+
+			unitBackpack _unit;
+		};
+
+		PUBLIC FUNCTION("","getBackPackItems") {
+			private ["_array", "_backpackitems", "_unit"];
+
+			_array = [];
+
+			_unit = MEMBER("unit", nil);
+			_backpackitems = backpackItems _unit;
+
+			{
+				if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
+					_array = _array + [_x];
+				};
+				sleep 0.001;
+			} foreach _backpackitems;
+			_array;
+		};
+
+		PUBLIC FUNCTION("","getBackPackWeapons") {
+			private ["_array", "_backpackitems"];
+
+			_array = [];
+
+			_unit = MEMBER("unit", nil);
+			_backpackitems = backpackItems _unit;
+
+			{
+				if(!(_x isEqualTo "") and !(_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
+					_array = _array + [_x];
+				};
+				sleep 0.001;
+			} foreach _backpackitems;
+			_array;
+		};
+
+
+		PUBLIC FUNCTION("string","getAmmoLoadedType") {
 			private ["_array", "_unit", "_ammo", "_type"];
 
 			_unit = MEMBER("unit", nil);
@@ -141,7 +184,7 @@
 			_ammo;
 		};				
 
-		PUBLIC FUNCTION("string","getLoadedAmmos") {
+		PUBLIC FUNCTION("string","getAmmoLoadedCount") {
 			private ["_array", "_unit", "_count", "_type"];
 
 			_unit = MEMBER("unit", nil);
