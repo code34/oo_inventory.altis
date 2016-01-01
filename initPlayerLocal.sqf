@@ -5,18 +5,6 @@
 
 	sleep 2;
 
-	"takeOffPrimaryWeapon" call _inventory;
-	hint "take off primary weapon";
-	sleep 2;
-
-	"takeOffSecondaryWeapon" call _inventory;
-	hint "take off secondary weapon";
-	sleep 2;
-
-	"takeOffHandGun" call _inventory;
-	hint "take off hand gun";
-	sleep 2;	
-
 	// get bullet
 	_result = ["getAmmoCountByWeapon", "primaryweapon"] call _inventory;
 	hint format ["count bullets for primary weapon %1", _result];
@@ -183,6 +171,21 @@
 	hint "take off vest, uniform, backpack";
 	sleep 2;
 
+	"takeOffPrimaryWeapon" call _inventory;
+	hint "take off primary weapon";
+	sleep 2;
+
+	"takeOffSecondaryWeapon" call _inventory;
+	hint "take off secondary weapon";
+	sleep 2;
+
+	"takeOffHandGun" call _inventory;
+	hint "take off hand gun";
+	sleep 2;
+
+	"takeOffInventory" call _inventory;
+	hint "take off all inventory";
+	sleep 2;
 
 	["setUnit", tata] call _inventory;
 	hint "change to next unit";
