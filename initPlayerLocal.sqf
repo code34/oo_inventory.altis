@@ -52,4 +52,20 @@
 
 	_result = "hasHeadGear" call _inventory;
 	hint format ["has Head Gear %1", _result];
-	sleep 2;		
+	sleep 2;
+
+	["setUnit", tata] call _inventory;
+	hint "change to next unit";
+	sleep 2;
+
+	// Clear inventory of character
+	"clearInventory" call _inventory;
+	hint "clear inventory of next unit";
+	sleep 2;
+
+	// set inventory
+	["setInventory", _array] call _inventory;
+	hint "set same Inventory as first unit";
+	sleep 2;
+
+
