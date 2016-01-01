@@ -3,6 +3,50 @@
 	// create a new inventory 
 	_inventory = ["new", toto] call OO_INVENTORY;
 
+	toto fire ("getPrimaryWeaponType" call _inventory);
+	sleep 2;
+
+	hint format ["Secondary ammo type %1 count %2", ["getAmmoLoadedType", "secondaryweapon"] call _inventory, ["getAmmoLoadedCount", "secondaryweapon"] call _inventory];
+	sleep 2;
+
+	toto fire ("getHandGunType" call _inventory);
+	sleep 2;
+
+	// get Backpack
+	_result = "getBackPackItems" call _inventory;
+	hint format ["Backpack Items: %1 ", _result];
+	sleep 2;	
+
+	// get Backpack
+	_result = "getBackPackWeapons" call _inventory;
+	hint format ["Backpack Weapons: %1 ", _result];
+	sleep 2;	
+
+	// get Backpack
+	_result = "getBackPackType" call _inventory;
+	hint format ["Backpack: %1 ", _result];
+	sleep 2;
+
+	// get current ammos 
+	_count = ["getAmmoLoadedCount", "primaryweapon"] call _inventory;
+	hint format ["Nb of ammos loaded in primary weapon %1", _count];
+	sleep 2;
+
+	// get current ammos 
+	_count = ["getAmmoLoadedCount", "secondaryweapon"] call _inventory;
+	hint format ["Nb of ammos loaded in secondary weapon %1", _count];
+	sleep 2;	
+
+	// get current ammos 
+	_count = ["getAmmoLoadedCount", "handgun"] call _inventory;
+	hint format ["Nb of ammos loaded in hand gun %1", _count];
+	sleep 2;	
+
+	// get current ammos 
+	_count = ["getAmmoLoadedCount", "grenade"] call _inventory;
+	hint format ["Nb of ammos loaded in grenade %1", _count];
+	sleep 2;	
+
 	// get inventory content
 	_array = "getInventory" call _inventory;
 	hint format ["inventory content: %1", _array];
