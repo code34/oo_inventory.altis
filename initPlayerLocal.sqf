@@ -3,6 +3,35 @@
 	// create a new inventory 
 	_inventory = ["new", toto] call OO_INVENTORY;
 
+	sleep 2;
+
+	"takeOffPrimaryWeapon" call _inventory;
+	hint "take off primary weapon";
+	sleep 2;
+
+	"takeOffSecondaryWeapon" call _inventory;
+	hint "take off secondary weapon";
+	sleep 2;
+
+	"takeOffHandGun" call _inventory;
+	hint "take off hand gun";
+	sleep 2;	
+
+	// get bullet
+	_result = ["getAmmoCountByWeapon", "primaryweapon"] call _inventory;
+	hint format ["count bullets for primary weapon %1", _result];
+	sleep 2;
+
+	// get bullet
+	_result = ["getAmmoCountByWeapon", "secondaryweapon"] call _inventory;
+	hint format ["count bullets for secondary weapon %1", _result];
+	sleep 2;
+
+	// get bullet
+	_result = ["getAmmoCountByWeapon", "handgun"] call _inventory;
+	hint format ["count bullets for hand gun %1", _result];
+	sleep 2;
+
 	// get uniform
 	_result = "getUniformItems" call _inventory;
 	hint format ["Uniform Items: %1 ", _result];
@@ -31,11 +60,11 @@
 	sleep 2;
 
 	_type = ["getAmmoLoadedType", "primaryweapon"] call _inventory;
-	_result =  ["getAmmoTotalCount", _type] call _inventory;
-	hint format ["primary ammos total count %1",_result];
+	_result =  ["getAmmoCountByType", _type] call _inventory;
+	hint format ["primary weapon bullets count %1",_result];
 	sleep 2;
 
-	_result =  ["getMagazinesCount", _type] call _inventory;
+	_result =  ["getMagazinesCountByType", _type] call _inventory;
 	hint format ["primary magazines count %1",_result];
 	sleep 2;
 
