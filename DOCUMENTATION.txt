@@ -118,6 +118,14 @@
 
 	--------------------------------------------------------------------------------------------------------------
 	
+	Function: "takeOffInventory" call _inventory;
+	Take off all inventory
+	
+	Parameters: nothing
+	Return : groundweaponholder containing objects	
+
+	--------------------------------------------------------------------------------------------------------------
+	
 	Function: "takeOffVest" call _inventory;
 	Take off vest + contents
 	
@@ -138,7 +146,7 @@
 	Take off backpack + contents
 	
 	Parameters: nothing
-	Return : groundweaponholder containing objects
+	Return : nothing
 
 	--------------------------------------------------------------------------------------------------------------
 	

@@ -117,6 +117,26 @@
 			} foreach (uniformItems MEMBER("unit", nil));
 		};
 
+		PUBLIC FUNCTION("","takeOffInventory") {
+			private ["_holder"];
+			_holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
+			_holder setpos (position MEMBER("unit", nil));
+
+			{
+				if(typename _x == "STRING") then {
+					_holder addItemCargoGlobal [_x , 1] ;
+				} else {
+					{
+						_holder addItemCargoGlobal [_x , 1] ;
+						sleep 0.001;
+					}foreach _x;
+				};
+				sleep 0.001;
+			} foreach MEMBER("getInventory", nil);
+			MEMBER("clearInventory", nil);
+			_holder;			
+		};
+
 		PUBLIC FUNCTION("","takeOffVest") {
 			private ["_holder"];
 			_holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
@@ -148,7 +168,6 @@
 		PUBLIC FUNCTION("","takeOffBackPack") {	
 			MEMBER("unit", nil) addBackpack (backpack MEMBER("unit", nil));
 			removeBackpack MEMBER("unit", nil);
-			_holder;
 		};
 
 		PUBLIC FUNCTION("","takeOffPrimaryWeapon") {
