@@ -128,6 +128,7 @@
 				sleep 0.001;
 			} foreach (vestItems MEMBER("unit", nil));
 			removeVest MEMBER("unit", nil);
+			_holder;
 		};
 
 		PUBLIC FUNCTION("","takeOffUniform") {
@@ -141,11 +142,13 @@
 				sleep 0.001;
 			} foreach (uniformItems MEMBER("unit", nil));
 			removeUniform MEMBER("unit", nil);
+			_holder;
 		};
 
 		PUBLIC FUNCTION("","takeOffBackPack") {	
 			MEMBER("unit", nil) addBackpack (backpack MEMBER("unit", nil));
 			removeBackpack MEMBER("unit", nil);
+			_holder;
 		};
 
 		PUBLIC FUNCTION("","takeOffPrimaryWeapon") {
@@ -162,6 +165,7 @@
 				sleep 0.001;
 			}foreach (magazinesAmmoFull MEMBER("unit", nil));
 			MEMBER("unit", nil) removeWeaponGlobal (primaryWeapon MEMBER("unit", nil));
+			_holder;
 		};
 
 		PUBLIC FUNCTION("","takeOffSecondaryWeapon") {
@@ -178,6 +182,7 @@
 				sleep 0.001;
 			}foreach (magazinesAmmoFull MEMBER("unit", nil));
 			MEMBER("unit", nil) removeWeaponGlobal (secondaryWeapon MEMBER("unit", nil));
+			_holder;
 		 };
 
 		 PUBLIC FUNCTION("","takeOffHandGun") {
@@ -194,6 +199,7 @@
 				sleep 0.001;
 			}foreach (magazinesAmmoFull MEMBER("unit", nil));
 			MEMBER("unit", nil) removeWeaponGlobal (handgunWeapon MEMBER("unit", nil));
+			_holder;
 		 };
 
 		PUBLIC FUNCTION("","getInventory") {

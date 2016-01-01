@@ -122,7 +122,7 @@
 	Take off vest + contents
 	
 	Parameters: nothing
-	Return : nothing
+	Return : groundweaponholder containing objects
 
 	--------------------------------------------------------------------------------------------------------------
 	
@@ -130,7 +130,7 @@
 	Take off uniform + contents
 	
 	Parameters: nothing
-	Return : nothing
+	Return : groundweaponholder containing objects
 
 	--------------------------------------------------------------------------------------------------------------
 	
@@ -138,7 +138,7 @@
 	Take off backpack + contents
 	
 	Parameters: nothing
-	Return : nothing
+	Return : groundweaponholder containing objects
 
 	--------------------------------------------------------------------------------------------------------------
 	
@@ -146,7 +146,7 @@
 	Take off Primary weapon + magazine loaded
 	
 	Parameters: nothing
-	Return : nothing
+	Return : groundweaponholder containing objects
 
 	--------------------------------------------------------------------------------------------------------------
 	
@@ -154,7 +154,7 @@
 	Take off Secondary weapon + magazine loaded
 	
 	Parameters: nothing
-	Return : nothing
+	Return : groundweaponholder containing objects
 
 	--------------------------------------------------------------------------------------------------------------
 	
@@ -162,7 +162,7 @@
 	Take off Hand Gun + magazine loaded
 	
 	Parameters: nothing
-	Return : nothing
+	Return : groundweaponholder containing objects
 
 	--------------------------------------------------------------------------------------------------------------
 
