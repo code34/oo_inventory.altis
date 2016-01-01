@@ -31,10 +31,13 @@
 	You can share, modify, distribute this script but don't remove the licence and the name of the original author
 
 	logs:
-		0.2 	- OO_INVENTORY
-				- add accessors set/get
-				- rebuild constructor
-				- add doc
+		0.3	- fix interface
+			- fix magazine methods/locality
+			- fix gps
+			- update documentation
+		0.2 	- add accessors set/get
+			- rebuild constructor
+			- add doc
 
 		0.1 	- OO_INVENTORY - from combat-assault.eu mission
 
