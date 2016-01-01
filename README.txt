@@ -2,7 +2,7 @@
 	Author: code34 nicolas_boiteux@yahoo.fr
 	Copyright (C) 2013-2016 Nicolas BOITEUX
 
-	CLASS OO_INVENTORY simple inventory class
+	CLASS OO_INVENTORY - a class to manage unit inventory
 	
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
