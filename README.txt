@@ -1,8 +1,8 @@
 	/*
 	Author: code34 nicolas_boiteux@yahoo.fr
-	Copyright (C) 2014-2015 Nicolas BOITEUX
+	Copyright (C) 2013-2016 Nicolas BOITEUX
 
-	CLASS OO_INVENTORY simple save/restory inventory class
+	CLASS OO_INVENTORY simple inventory class
 	
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -38,7 +38,6 @@
 		0.2 	- add accessors set/get
 			- rebuild constructor
 			- add doc
-
 		0.1 	- OO_INVENTORY - from combat-assault.eu mission
 
 
