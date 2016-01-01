@@ -108,6 +108,7 @@
 
 			_array = _this;
 			
+			_unit = MEMBER("unit", nil);
 			MEMBER("clearInventory", _unit);
 
 			_headgear = _array select 0;
