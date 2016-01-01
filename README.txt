@@ -31,8 +31,12 @@
 	You can share, modify, distribute this script but don't remove the licence and the name of the original author
 
 	logs:
-		0.3
-			- add setUnit method
+		0.3	
+			- add bullets count methods
+			- add clear methods
+			- add get methods
+			- add Takeoff methods
+			- add setUnit methods
 			- add hasX methods
 			- fix interface
 			- fix magazine methods/locality
