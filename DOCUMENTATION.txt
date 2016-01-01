@@ -141,6 +141,30 @@
 	Return : nothing
 
 	--------------------------------------------------------------------------------------------------------------
+	
+	Function: "takeOffPrimaryWeapon" call _inventory;
+	Take off Primary weapon + magazine loaded
+	
+	Parameters: nothing
+	Return : nothing
+
+	--------------------------------------------------------------------------------------------------------------
+	
+	Function: "takeOffSecondaryWeapon" call _inventory;
+	Take off Secondary weapon + magazine loaded
+	
+	Parameters: nothing
+	Return : nothing
+
+	--------------------------------------------------------------------------------------------------------------
+	
+	Function: "takeOffHandGun" call _inventory;
+	Take off Hand Gun + magazine loaded
+	
+	Parameters: nothing
+	Return : nothing
+
+	--------------------------------------------------------------------------------------------------------------
 
 	Function: _type = "getPrimaryWeaponType" call _inventory;
 	Get the primary weapon type
@@ -220,6 +244,32 @@
 
 	Return : scalar - number of ammo loaded for the source weapon
 
+	--------------------------------------------------------------------------------------------------------------	
+
+	Function: _count = ["getMagazinesCountByType", _type] call _inventory;
+	Get count of magazines depending of magazine class
+		
+	Parameters: string _type - class of magazine
+
+	Return : scalar - number of magazines avalaible
+
+	--------------------------------------------------------------------------------------------------------------	
+
+	Function: _count = ["getAmmoCountByType", _type] call _inventory;
+	Get count of bullets depending of magazine class
+		
+	Parameters: string _type - class of magazine
+
+	Return : scalar - number of bullets avalaible
+
+	--------------------------------------------------------------------------------------------------------------	
+
+	Function: _count = ["getAmmoCountByWeapon", _source] call _inventory;
+	Get count of bullets depending of weapon
+		
+	Parameters: _source can be : "primaryweapon", "secondaryweapon", "handgun"
+
+	Return : scalar - number of bullets avalaible
 	--------------------------------------------------------------------------------------------------------------	
 
 	Function: _bool = "hasBackPack" call _inventory;
