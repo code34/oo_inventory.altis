@@ -117,6 +117,30 @@
 	Return : nothing
 
 	--------------------------------------------------------------------------------------------------------------
+	
+	Function: "takeOffVest" call _inventory;
+	Take off vest + contents
+	
+	Parameters: nothing
+	Return : nothing
+
+	--------------------------------------------------------------------------------------------------------------
+	
+	Function: "takeOffUniform" call _inventory;
+	Take off uniform + contents
+	
+	Parameters: nothing
+	Return : nothing
+
+	--------------------------------------------------------------------------------------------------------------
+	
+	Function: "takeOffBackPack" call _inventory;
+	Take off backpack + contents
+	
+	Parameters: nothing
+	Return : nothing
+
+	--------------------------------------------------------------------------------------------------------------
 
 	Function: _type = "getPrimaryWeaponType" call _inventory;
 	Get the primary weapon type
