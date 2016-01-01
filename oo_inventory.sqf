@@ -71,6 +71,114 @@
 			_array;
 		};
 
+		PUBLIC FUNCTION("","getPrimaryWeapon") {
+			private ["_unit"];
+
+			_unit = MEMBER("unit", nil);
+
+			primaryWeapon _unit;
+		};
+
+		PUBLIC FUNCTION("","getSecondaryWeapon") {
+			private ["_unit"];
+
+			_unit = MEMBER("unit", nil);
+
+			secondaryWeapon _unit;
+		};
+
+		PUBLIC FUNCTION("","getHandGun") {
+			private ["_unit"];
+
+			_unit = MEMBER("unit", nil);
+
+			handgunWeapon _unit;
+		};
+
+		PUBLIC FUNCTION("","getBackPack") {
+			private ["_unit"];
+
+			_unit = MEMBER("unit", nil);
+
+			backpack _unit;
+		};
+
+		PUBLIC FUNCTION("string","getAmmoType") {
+			private ["_array", "_unit", "_ammo", "_type"];
+
+			_unit = MEMBER("unit", nil);
+			_ammo = "";
+
+			switch (tolower _this) do {
+				case "primaryweapon" : {
+					_type = 1;
+				};
+
+				case "secondaryweapon" : {
+					_type = 4;
+				};
+
+				case "handgun" : {
+					_type = 2;
+				};
+
+				case "grenade" : {
+					_type = 0;
+				};
+
+				default {
+					_type = 1;
+				};
+			};
+
+			_array = magazinesAmmoFull _unit;
+			{
+				if((_x select 3 == _type) and !(_x select 4 in ["Vest", "Uniform", "Backpack"])) then {
+					_ammo = _x select 0;
+				};
+				sleep 0.001;
+			}foreach _array;
+			_ammo;
+		};				
+
+		PUBLIC FUNCTION("string","getLoadedAmmos") {
+			private ["_array", "_unit", "_count", "_type"];
+
+			_unit = MEMBER("unit", nil);
+			_count = 0;
+
+			switch (tolower _this) do {
+				case "primaryweapon" : {
+					_type = 1;
+				};
+
+				case "secondaryweapon" : {
+					_type = 4;
+				};
+
+				case "handgun" : {
+					_type = 2;
+				};
+
+				case "grenade" : {
+					_type = 0;
+				};
+
+				default {
+					_type = 1;
+				};
+			};
+
+			_array = magazinesAmmoFull _unit;
+			{
+				if((_x select 3 == _type) and !(_x select 4 in ["Vest", "Uniform", "Backpack"])) then {
+					_count = _x select 1;
+				};
+				sleep 0.001;
+			}foreach _array;
+			_count;
+		};
+
 		PUBLIC FUNCTION("","hasBackpack") {
 			if(backpack MEMBER("unit", nil) isEqualTo "") then { false;} else {true;};
 		};
