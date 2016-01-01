@@ -1,30 +1,55 @@
 	call compilefinal preprocessFileLineNumbers "oo_inventory.sqf";
 
 	// create a new inventory 
-	_inventory = ["new", []] call OO_INVENTORY;
+	_inventory = ["new", toto] call OO_INVENTORY;
 
-	// save the inventory of player
-	["save", player] call _inventory;
-
+	// get inventory content
+	_array = "getInventory" call _inventory;
+	hint format ["inventory content: %1", _array];
 	sleep 2;
 
-	// clear the inventory of player
-	 ["clear", player] call _inventory;	
-
+	// Clear inventory of character
+	"clearInventory" call _inventory;
 	sleep 2;
 
-	// load the inventory of player to player
-	["load", player] call _inventory;
-
+	// set inventory
+	["setInventory", _array] call _inventory;
+	hint "set Inventory back";
 	sleep 2;
 
-	// retrive inventory and copy it to clipboard
-	_loadout = "getInventory" call _inventory;
-	copytoclipboard str(_loadout);
+	// check if backpack
+	_result = "hasBackPack" call _inventory;
+	hint format ["has backpack %1", _result];
+	sleep 2;
 
-	// load it on civil guy
-	["setInventory", _loadout] call _inventory;
-	["load", toto] call _inventory;	
+	// check if vest
+	_result = "hasVest" call _inventory;
+	hint format ["has Vest %1", _result];
+	sleep 2;	
 
-	["delete", _inventory] call OO_INVENTORY;
-	hint str("getInventory" call _inventory);
+	// check if uniform
+	_result = "hasUniform" call _inventory;
+	hint format ["has Uniform %1", _result];
+	sleep 2;	
+
+	// check if goggle
+	_result = "hasGoggles" call _inventory;
+	hint format ["has Goggles %1", _result];
+	sleep 2;		
+
+	// check if goggle
+	_result = "hasPrimaryWeapon" call _inventory;
+	hint format ["has Primary Weapon %1", _result];
+	sleep 2;		
+
+	_result = "hasSecondaryWeapon" call _inventory;
+	hint format ["has Secondary Weapon %1", _result];
+	sleep 2;
+
+	_result = "hasHandGun" call _inventory;
+	hint format ["has Hand Gun %1", _result];
+	sleep 2;
+
+	_result = "hasHeadGear" call _inventory;
+	hint format ["has Head Gear %1", _result];
+	sleep 2;		
