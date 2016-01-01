@@ -1,8 +1,8 @@
 	/*
 	Author: code34 nicolas_boiteux@yahoo.fr
-	Copyright (C) 2014-2015 Nicolas BOITEUX
+	Copyright (C) 2013-2016 Nicolas BOITEUX
 
-	CLASS OO_INVENTORY simple save/restory inventory class
+	CLASS OO_INVENTORY simple inventory class
 	
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -36,13 +36,164 @@
 
 	Return : nothing
 
+	--------------------------------------------------------------------------------------------------------------
+
+	Function: _type = "getPrimaryWeaponType" call _inventory;
+	Get the primary weapon type
+		
+	Parameters: nothing
+
+	Return : string - type of the primary weapon
+
+	--------------------------------------------------------------------------------------------------------------
+
+	Function: _type = "getSecondaryWeaponType" call _inventory;
+	Get the secondary weapon type
+		
+	Parameters: nothing
+
+	Return : string - type of the secondary weapon	
+	--------------------------------------------------------------------------------------------------------------	
+
+	Function: _type = "getHandGunType" call _inventory;
+	Get the hand gun type
+		
+	Parameters: nothing
+
+	Return : string - type of the hand gun
+	
+	--------------------------------------------------------------------------------------------------------------	
+
+	Function: _type = "getBackPackType" call _inventory;
+	Get the backpack type
+		
+	Parameters: nothing
+
+	Return : string - type of the backpack
+
+	--------------------------------------------------------------------------------------------------------------	
+
+	Function: _backpack = "getBackPack" call _inventory;
+	Get the backpack of unit
+		
+	Parameters: nothing
+
+	Return : object - backpack of the unit
+
+	--------------------------------------------------------------------------------------------------------------	
+
+	Function: _array = "getBackPackItems" call _inventory;
+	Get all items type in the backpack (without weapons)
+		
+	Parameters: nothing
+
+	Return : array containing all the items type in the backpack
+
+	--------------------------------------------------------------------------------------------------------------	
+
+	Function: _array = "getBackPackWeapons" call _inventory;
+	Get all weapons in the backpack
+		
+	Parameters: nothing
+
+	Return : array containing all the items type in the backpack
+
+	--------------------------------------------------------------------------------------------------------------	
+
+	Function: _type = ["getAmmoLoadedType", _source] call _inventory;
+	Get the ammo type loaded for the source weapon
+		
+	Parameters: _source can be : "primaryweapon", "secondaryweapon", "handgun", "grenade"
+
+	Return : string - type of the ammo loaded
+
+	--------------------------------------------------------------------------------------------------------------	
+
+	Function: _count = ["getAmmoLoadedCount", _source] call _inventory;
+	Get the ammos count loaded for the source weapon
+		
+	Parameters: _source can be : "primaryweapon", "secondaryweapon", "handgun", "grenade"
+
+	Return : scalar - number of ammo loaded for the source weapon
+
+	--------------------------------------------------------------------------------------------------------------	
+
+	Function: _bool = "hasBackPack" call _inventory;
+	Check if unit has a backpack
+		
+	Parameters: nothing
+
+	Return : bool - true if he has
+
+	--------------------------------------------------------------------------------------------------------------	
+
+	Function: _bool = "hasVest" call _inventory;
+	Check if unit has a Vest
+		
+	Parameters: nothing
+
+	Return : bool - true if he has
+
+	--------------------------------------------------------------------------------------------------------------	
+
+	Function: _bool = "hasUniform" call _inventory;
+	Check if unit has an uniform
+		
+	Parameters: nothing
+
+	Return : bool - true if he has
+	
+	--------------------------------------------------------------------------------------------------------------	
+
+	Function: _bool = "hasPrimaryWeapon" call _inventory;
+	Check if unit has a primary weapon
+		
+	Parameters: nothing
+
+	Return : bool - true if he has
+	
+	--------------------------------------------------------------------------------------------------------------	
+
+	Function: _bool = "hasSecondaryWeapon" call _inventory;
+	Check if unit has a secondary weapon
+		
+	Parameters: nothing
+
+	Return : bool - true if he has
+
+	--------------------------------------------------------------------------------------------------------------	
+
+	Function: _bool = "hasHandGun" call _inventory;
+	Check if unit has a hand gun
+		
+	Parameters: nothing
+
+	Return : bool - true if he has
+
+	--------------------------------------------------------------------------------------------------------------	
+
+	Function: _bool = "hasHeadGear" call _inventory;
+	Check if unit has a head gear
+		
+	Parameters: nothing
+
+	Return : bool - true if he has
+
+	--------------------------------------------------------------------------------------------------------------	
+
+	Function: _bool = "hasGoggles" call _inventory;
+	Check if unit has a goggles
+		
+	Parameters: nothing
+
+	Return : bool - true if he has
+
 	--------------------------------------------------------------------------------------------------------------	
 
 	Function: _array = "getInventory" call _inventory;
 	Get inventory of the unit object
 		
-	Parameters:
-		_object -  unit object who will load the inventory
+	Parameters: nothing
 
 	Return : Array containing :
 		0 - headgear
