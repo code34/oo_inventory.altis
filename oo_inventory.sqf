@@ -44,6 +44,78 @@
 			removeAllAssignedItems _unit;
 			removeBackpack _unit;
 		};
+
+		PUBLIC FUNCTION("","clearBackpack") {
+			clearAllItemsFromBackpack MEMBER("unit", nil);
+		};
+
+		PUBLIC FUNCTION("","clearBackpackItems") {
+			{
+				if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
+					 MEMBER("unit", nil) removeItemFromBackpack	 _x;
+				};
+				sleep 0.001;
+			} foreach (backpackItems MEMBER("unit", nil));
+		};
+
+		PUBLIC FUNCTION("","clearBackpackWeapons") {
+			{
+				if(!(_x isEqualTo "") and !(_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
+					 MEMBER("unit", nil) removeItemFromBackpack	 _x;
+				};
+				sleep 0.001;
+			} foreach (backpackItems MEMBER("unit", nil));
+		};		
+
+		PUBLIC FUNCTION("","clearVest") {
+			{
+				MEMBER("unit", nil) removeItemFromVest _x;
+				sleep 0.001;
+			} foreach (vestItems MEMBER("unit", nil));
+		};
+
+		PUBLIC FUNCTION("","clearVestItems") {
+			{
+				if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
+					 MEMBER("unit", nil) removeItemFromVest _x;
+				};
+				sleep 0.001;
+			} foreach (vestItems MEMBER("unit", nil));
+		};
+
+		PUBLIC FUNCTION("","clearVestWeapons") {
+			{
+				if(!(_x isEqualTo "") and !(_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
+					 MEMBER("unit", nil) removeItemFromVest _x;
+				};
+				sleep 0.001;
+			} foreach (vestItems MEMBER("unit", nil));
+		};
+
+		PUBLIC FUNCTION("","clearUniform") {
+			{
+				MEMBER("unit", nil) removeItemFromUniform _x;
+				sleep 0.001;
+			} foreach (uniformItems MEMBER("unit", nil));
+		};
+
+		PUBLIC FUNCTION("","clearUniformItems") {
+			{
+				if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
+					 MEMBER("unit", nil) removeItemFromUniform	 _x;
+				};
+				sleep 0.001;
+			} foreach (uniformItems MEMBER("unit", nil));
+		};
+
+		PUBLIC FUNCTION("","clearUniformWeapons") {
+			{
+				if(!(_x isEqualTo "") and !(_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
+					 MEMBER("unit", nil) removeItemFromUniform	 _x;
+				};
+				sleep 0.001;
+			} foreach (uniformItems MEMBER("unit", nil));
+		};
 	
 		PUBLIC FUNCTION("","getInventory") {
 			private ["_array", "_unit"];
@@ -72,86 +144,114 @@
 		};
 
 		PUBLIC FUNCTION("","getPrimaryWeaponType") {
-			private ["_unit"];
-
-			_unit = MEMBER("unit", nil);
-
-			primaryWeapon _unit;
+			primaryWeapon MEMBER("unit", nil);
 		};
 
 		PUBLIC FUNCTION("","getSecondaryWeaponType") {
-			private ["_unit"];
-
-			_unit = MEMBER("unit", nil);
-
-			secondaryWeapon _unit;
+			secondaryWeapon MEMBER("unit", nil);
 		};
 
 		PUBLIC FUNCTION("","getHandGunType") {
-			private ["_unit"];
-
-			_unit = MEMBER("unit", nil);
-
-			handgunWeapon _unit;
+			handgunWeapon MEMBER("unit", nil);
 		};
 
 		PUBLIC FUNCTION("","getBackPackType") {
-			private ["_unit"];
-
-			_unit = MEMBER("unit", nil);
-
-			backpack _unit;
+			backpack MEMBER("unit", nil);
 		};
 
 		PUBLIC FUNCTION("","getBackPack") {
-			private ["_unit"];
-
-			_unit = MEMBER("unit", nil);
-
-			unitBackpack _unit;
+			unitBackpack MEMBER("unit", nil);
 		};
 
-		PUBLIC FUNCTION("","getBackPackItems") {
-			private ["_array", "_backpackitems", "_unit"];
+		PUBLIC FUNCTION("","getUniformItems") {
+			private ["_array"];
 
 			_array = [];
-
-			_unit = MEMBER("unit", nil);
-			_backpackitems = backpackItems _unit;
 
 			{
 				if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
 					_array = _array + [_x];
 				};
 				sleep 0.001;
-			} foreach _backpackitems;
+			} foreach (uniformItems MEMBER("unit", nil));
 			_array;
 		};
 
-		PUBLIC FUNCTION("","getBackPackWeapons") {
-			private ["_array", "_backpackitems"];
+		PUBLIC FUNCTION("","getUniformWeapons") {
+			private ["_array"];
 
 			_array = [];
-
-			_unit = MEMBER("unit", nil);
-			_backpackitems = backpackItems _unit;
 
 			{
 				if(!(_x isEqualTo "") and !(_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
 					_array = _array + [_x];
 				};
 				sleep 0.001;
-			} foreach _backpackitems;
+			} foreach (uniformItems MEMBER("unit", nil));
+			_array;
+		};		
+
+		PUBLIC FUNCTION("","getVestItems") {
+			private ["_array"];
+
+			_array = [];
+
+			{
+				if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
+					_array = _array + [_x];
+				};
+				sleep 0.001;
+			} foreach (vestItems MEMBER("unit", nil));
+			_array;
+		};
+
+		PUBLIC FUNCTION("","getVestWeapons") {
+			private ["_array"];
+
+			_array = [];
+
+			{
+				if(!(_x isEqualTo "") and !(_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
+					_array = _array + [_x];
+				};
+				sleep 0.001;
+			} foreach (vestItems MEMBER("unit", nil));
+			_array;
+		};		
+
+		PUBLIC FUNCTION("","getBackPackItems") {
+			private ["_array"];
+
+			_array = [];
+
+			{
+				if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
+					_array = _array + [_x];
+				};
+				sleep 0.001;
+			} foreach (backpackItems MEMBER("unit", nil));
+			_array;
+		};
+
+		PUBLIC FUNCTION("","getBackPackWeapons") {
+			private ["_array"];
+
+			_array = [];
+
+			{
+				if(!(_x isEqualTo "") and !(_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
+					_array = _array + [_x];
+				};
+				sleep 0.001;
+			} foreach (backpackItems MEMBER("unit", nil));
 			_array;
 		};
 
 
 		PUBLIC FUNCTION("string","getAmmoLoadedType") {
-			private ["_array", "_unit", "_ammo", "_type"];
+			private ["_ammo", "_type"];
 
-			_unit = MEMBER("unit", nil);
 			_ammo = "";
-
 			switch (tolower _this) do {
 				case "primaryweapon" : {
 					_type = 1;
@@ -174,20 +274,48 @@
 				};
 			};
 
-			_array = magazinesAmmoFull _unit;
 			{
 				if((_x select 3 == _type) and !(_x select 4 in ["Vest", "Uniform", "Backpack"])) then {
 					_ammo = _x select 0;
 				};
 				sleep 0.001;
-			}foreach _array;
+			}foreach (magazinesAmmoFull MEMBER("unit", nil));
 			_ammo;
-		};				
+		};
+
+		PUBLIC FUNCTION("string","getAmmoTotalCount") {
+			private ["_count", "_type"];
+
+			_type = _this;
+			_count = 0;
+
+			{
+				if(_x select 0 == _type)  then {
+					_count = (_x select 1) + _count;
+				};
+				sleep 0.001;
+			}foreach (magazinesAmmoFull MEMBER("unit", nil));
+			_count;
+		};
+
+		PUBLIC FUNCTION("string","getMagazinesCount") {
+			private ["_count", "_type"];
+
+			_type = _this;
+			_count = 0;
+
+			{
+				if(_x select 0 == _type)  then { 
+					_count = _count + 1;
+				};
+				sleep 0.001;
+			}foreach (magazinesAmmoFull MEMBER("unit", nil));
+			_count;
+		};
 
 		PUBLIC FUNCTION("string","getAmmoLoadedCount") {
-			private ["_array", "_unit", "_count", "_type"];
+			private ["_count", "_type"];
 
-			_unit = MEMBER("unit", nil);
 			_count = 0;
 
 			switch (tolower _this) do {
@@ -212,13 +340,12 @@
 				};
 			};
 
-			_array = magazinesAmmoFull _unit;
 			{
 				if((_x select 3 == _type) and !(_x select 4 in ["Vest", "Uniform", "Backpack"])) then {
 					_count = _x select 1;
 				};
 				sleep 0.001;
-			}foreach _array;
+			}foreach (magazinesAmmoFull MEMBER("unit", nil));
 			_count;
 		};
 
