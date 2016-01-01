@@ -28,6 +28,15 @@
 
 	--------------------------------------------------------------------------------------------------------------
 
+	Function: _version = "getVersion" call _inventory;
+	Return OO_INVENTORY version
+		
+	Parameters: none
+
+	Return : string _version
+
+	--------------------------------------------------------------------------------------------------------------
+
 	Function: ["setUnit", _unit] call _inventory;
 	Set a new unit object
 		

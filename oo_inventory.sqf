@@ -27,6 +27,10 @@
 			MEMBER("unit", _this);
 		};
 
+		PUBLIC FUNCTION("","getVersion") {
+			"0.3";
+		};
+
 		PUBLIC FUNCTION("object","setUnit") {
 			MEMBER("unit", _this);
 		};
