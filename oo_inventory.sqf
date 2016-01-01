@@ -222,7 +222,7 @@
 			_count;
 		};
 
-		PUBLIC FUNCTION("","hasBackpack") {
+		PUBLIC FUNCTION("","hasBackPack") {
 			if(backpack MEMBER("unit", nil) isEqualTo "") then { false;} else {true;};
 		};
 
