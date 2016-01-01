@@ -59,6 +59,38 @@
 			_array;
 		};
 
+		PUBLIC FUNCTION("object","hasBackpack") {
+			if(backpack _this isEqualTo "") then { false;} else {true;};
+		};
+
+		PUBLIC FUNCTION("object","hasVest") {
+			if(vest _this isEqualTo "") then { false;} else {true;};
+		};
+
+		PUBLIC FUNCTION("object","hasUniform") {
+			if(uniform _this isEqualTo "") then { false;} else {true;};
+		};
+
+		PUBLIC FUNCTION("object","hasPrimaryWeapon") {
+			if(primaryWeapon _this isEqualTo "") then { false;} else {true;};
+		};
+
+		PUBLIC FUNCTION("object","hasSecondaryWeapon") {
+			if(secondaryWeapon _this isEqualTo "") then { false;} else {true;};
+		};
+
+		PUBLIC FUNCTION("object","hasHandGun") {
+			if(handgunWeapon _this isEqualTo "") then { false;} else {true;};
+		};
+
+		PUBLIC FUNCTION("object","hasHeadGear") {
+			if(headgear _this isEqualTo "") then { false;} else {true;};
+		};
+
+		PUBLIC FUNCTION("object","hasGoggles") {
+			if(goggles _this isEqualTo "") then { false;} else {true;};
+		};
+
 		PUBLIC FUNCTION("array","setInventory") {
 			private ["_array", "_headgear", "_goggles", "_uniform", "_uniformitems", "_vest", "_vestitems", "_backpack", "_backpackitems", "_primaryweapon", "_primaryweaponitems", "_secondaryweapon", "_secondaryweaponitems",  "_handgun", "_handgunweaponitems", "_assigneditems", "_position", "_damage", "_dir", "_fullmagazine"];
 
