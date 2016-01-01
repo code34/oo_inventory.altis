@@ -21,83 +21,94 @@
 	#include "oop.h"
 
 	CLASS("OO_INVENTORY")
-		PUBLIC FUNCTION("array","constructor") { 
-			
+		PRIVATE VARIABLE("object","unit");
+
+		PUBLIC FUNCTION("object","constructor") { 
+			MEMBER("unit", _this);
 		};
 
-		PUBLIC FUNCTION("object","clearInventory") {
-			removeallweapons _this;
-			removeGoggles _this;
-			removeHeadgear _this;
-			removeVest _this;
-			removeUniform _this;
-			removeAllAssignedItems _this;
-			removeBackpack _this;
+		PUBLIC FUNCTION("object","setUnit") {
+			MEMBER("unit", _this);
+		};
+
+		PUBLIC FUNCTION("","clearInventory") {
+			private ["_unit"];
+
+			_unit = MEMBER("unit", nil);
+
+			removeallweapons _unit;
+			removeGoggles _unit;
+			removeHeadgear _unit;
+			removeVest _unit;
+			removeUniform _unit;
+			removeAllAssignedItems _unit;
+			removeBackpack _unit;
 		};
 	
-		PUBLIC FUNCTION("object","getInventory") {
-			private ["_array"];
-
+		PUBLIC FUNCTION("","getInventory") {
+			private ["_array", "_unit"];
+			
+			_unit = MEMBER("unit", nil);
+			
 			_array = [
-				(headgear _this), 
-				(goggles _this), 
-				(uniform _this), 
-				(UniformItems _this), 
-				(vest _this), 
-				(VestItems _this), 
-				(backpack _this), 
-				(backpackItems _this), 
-				(magazinesAmmoFull _this),
-				(primaryWeapon _this), 
-				(primaryWeaponItems _this),
-				(secondaryWeapon _this),
-				(secondaryWeaponItems _this),
-				(handgunWeapon _this),
-				(handgunItems _this),
-				(assignedItems _this)
+				(headgear _unit), 
+				(goggles _unit), 
+				(uniform _unit), 
+				(UniformItems _unit), 
+				(vest _unit), 
+				(VestItems _unit), 
+				(backpack _unit), 
+				(backpackItems _unit), 
+				(magazinesAmmoFull _unit),
+				(primaryWeapon _unit), 
+				(primaryWeaponItems _unit),
+				(secondaryWeapon _unit),
+				(secondaryWeaponItems _unit),
+				(handgunWeapon _unit),
+				(handgunItems _unit),
+				(assignedItems _unit)
 			];
 			_array;
 		};
 
-		PUBLIC FUNCTION("object","hasBackpack") {
-			if(backpack _this isEqualTo "") then { false;} else {true;};
+		PUBLIC FUNCTION("","hasBackpack") {
+			if(backpack MEMBER("unit", nil) isEqualTo "") then { false;} else {true;};
 		};
 
-		PUBLIC FUNCTION("object","hasVest") {
-			if(vest _this isEqualTo "") then { false;} else {true;};
+		PUBLIC FUNCTION("","hasVest") {
+			if(vest MEMBER("unit", nil) isEqualTo "") then { false;} else {true;};
 		};
 
-		PUBLIC FUNCTION("object","hasUniform") {
-			if(uniform _this isEqualTo "") then { false;} else {true;};
+		PUBLIC FUNCTION("","hasUniform") {
+			if(uniform MEMBER("unit", nil) isEqualTo "") then { false;} else {true;};
 		};
 
-		PUBLIC FUNCTION("object","hasPrimaryWeapon") {
-			if(primaryWeapon _this isEqualTo "") then { false;} else {true;};
+		PUBLIC FUNCTION("","hasPrimaryWeapon") {
+			if(primaryWeapon MEMBER("unit", nil) isEqualTo "") then { false;} else {true;};
 		};
 
-		PUBLIC FUNCTION("object","hasSecondaryWeapon") {
-			if(secondaryWeapon _this isEqualTo "") then { false;} else {true;};
+		PUBLIC FUNCTION("","hasSecondaryWeapon") {
+			if(secondaryWeapon MEMBER("unit", nil) isEqualTo "") then { false;} else {true;};
 		};
 
-		PUBLIC FUNCTION("object","hasHandGun") {
-			if(handgunWeapon _this isEqualTo "") then { false;} else {true;};
+		PUBLIC FUNCTION("","hasHandGun") {
+			if(handgunWeapon MEMBER("unit", nil) isEqualTo "") then { false;} else {true;};
 		};
 
-		PUBLIC FUNCTION("object","hasHeadGear") {
-			if(headgear _this isEqualTo "") then { false;} else {true;};
+		PUBLIC FUNCTION("","hasHeadGear") {
+			if(headgear MEMBER("unit", nil) isEqualTo "") then { false;} else {true;};
 		};
 
-		PUBLIC FUNCTION("object","hasGoggles") {
-			if(goggles _this isEqualTo "") then { false;} else {true;};
+		PUBLIC FUNCTION("","hasGoggles") {
+			if(goggles MEMBER("unit", nil) isEqualTo "") then { false;} else {true;};
 		};
 
 		PUBLIC FUNCTION("array","setInventory") {
-			private ["_array", "_headgear", "_goggles", "_uniform", "_uniformitems", "_vest", "_vestitems", "_backpack", "_backpackitems", "_primaryweapon", "_primaryweaponitems", "_secondaryweapon", "_secondaryweaponitems",  "_handgun", "_handgunweaponitems", "_assigneditems", "_position", "_damage", "_dir", "_fullmagazine"];
+			private ["_array", "_headgear", "_goggles", "_uniform", "_uniformitems", "_vest", "_vestitems", "_backpack", "_backpackitems", "_primaryweapon", "_primaryweaponitems", "_secondaryweapon", "_secondaryweaponitems",  "_handgun", "_handgunweaponitems", "_assigneditems", "_position", "_damage", "_dir", "_fullmagazine", "_unit"];
 
-			_object = _this select 0;
-			_array = _this select 1;
+			_array = _this;
 			
-			MEMBER("clearInventory", _this);
+			MEMBER("clearInventory", _unit);
 
 			_headgear = _array select 0;
 			_goggles = _array select 1;
@@ -116,75 +127,75 @@
 			_handgunweaponitems = _array select 14;
 			_assigneditems = _array select 15;
 
-			_this addHeadgear _headgear;
-			_this forceAddUniform _uniform;
-			_this addGoggles _goggles;
-			_this addVest _vest;
+			_unit addHeadgear _headgear;
+			_unit forceAddUniform _uniform;
+			_unit addGoggles _goggles;
+			_unit addVest _vest;
 
 			{
 				if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
-					_this addItemToUniform _x;
+					_unit addItemToUniform _x;
 				};
 			}foreach _uniformitems;
 	
 			{
 				if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
-					_this addItemToVest _x;
+					_unit addItemToVest _x;
 				};
 			}foreach _vestitems;
 	
 			if!(_backpack isEqualTo "") then {
-				_this addbackpack _backpack;
+				_unit addbackpack _backpack;
 				{
 					if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
-						_this addItemToBackpack _x;
+						_unit addItemToBackpack _x;
 					};
 				} foreach _backpackitems;
 			};
 	
 			{
 				if!(_x isEqualTo "") then {
-					_this addMagazine [_x select 0, _x select 1];
+					_unit addMagazine [_x select 0, _x select 1];
 				};
 			} foreach _fullmagazine;
 
 			//must be after assign items to secure loading mags
-			_this addweapon _primaryweapon;
+			_unit addweapon _primaryweapon;
 	
 			{
 				if(_x != "") then {
-					_this addPrimaryWeaponItem _x;
+					_unit addPrimaryWeaponItem _x;
 				};
 			} foreach _primaryweaponitems;
 
-			_this addweapon _secondaryweapon;
+			_unit addweapon _secondaryweapon;
 	
 			{
 				if(_x != "") then {
-					_this addSecondaryWeaponItem _x;
+					_unit addSecondaryWeaponItem _x;
 				};
 			} foreach _secondaryweaponitems;
 	
 
-			_this addweapon _handgunweapon;
+			_unit addweapon _handgunweapon;
 	
 			{
 				if(_x != "") then {
-					_this addHandgunItem _x;
+					_unit addHandgunItem _x;
 				};
 			} foreach _handgunweaponitems;
 	
 			{
 				if(_x != "") then {
-					_this additem _x;
-					_this assignItem _x;
+					_unit additem _x;
+					_unit assignItem _x;
 				};
 			} foreach _assigneditems;
 
-			if (needReload _this == 1) then {reload _this};
+			if (needReload _unit == 1) then {reload _unit};
 		};
 
 		PUBLIC FUNCTION("","deconstructor") {
-			
+			DELETE_VARIABLE("unit");
 		 };
 	ENDCLASS;
