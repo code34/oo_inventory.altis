@@ -149,16 +149,52 @@
 		};
 
 		PUBLIC FUNCTION("","takeOffPrimaryWeapon") {
+			private ["_holder"];
+
+			_holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
+			_holder setpos (position MEMBER("unit", nil));
+			_holder addItemCargoGlobal [(primaryWeapon MEMBER("unit", nil)) , 1] ;
+
+		 	{
+				if((_x select 3 == 1) and !(_x select 4 in ["Vest", "Uniform", "Backpack"])) then {
+					_holder addMagazineAmmoCargo [_x select 0, 1, _x select 1] ;
+				};
+				sleep 0.001;
+			}foreach (magazinesAmmoFull MEMBER("unit", nil));
 			MEMBER("unit", nil) removeWeaponGlobal (primaryWeapon MEMBER("unit", nil));
 		};
 
 		PUBLIC FUNCTION("","takeOffSecondaryWeapon") {
-			MEMBER("unit", nil) removeWeaponGlobal (secondaryWeapon MEMBER("unit", nil));
-		};
+			private ["_holder"];
 
-		PUBLIC FUNCTION("","takeOffHandGun") {
+			_holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
+			_holder setpos (position MEMBER("unit", nil));
+			_holder addItemCargoGlobal [(secondaryWeapon MEMBER("unit", nil)) , 1] ;
+		
+			{
+				if((_x select 3 == 4) and !(_x select 4 in ["Vest", "Uniform", "Backpack"])) then {
+					_holder addMagazineAmmoCargo [_x select 0, 1, _x select 1] ;
+				};
+				sleep 0.001;
+			}foreach (magazinesAmmoFull MEMBER("unit", nil));
+			MEMBER("unit", nil) removeWeaponGlobal (secondaryWeapon MEMBER("unit", nil));
+		 };
+
+		 PUBLIC FUNCTION("","takeOffHandGun") {
+		 	private ["_holder"];
+
+			_holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
+			_holder setpos (position MEMBER("unit", nil));
+			_holder addItemCargoGlobal [(handgunWeapon MEMBER("unit", nil)) , 1] ;
+
+			{
+				if((_x select 3 == 2) and !(_x select 4 in ["Vest", "Uniform", "Backpack"])) then {
+					_holder addMagazineAmmoCargo [_x select 0, 1, _x select 1] ;
+				};
+				sleep 0.001;
+			}foreach (magazinesAmmoFull MEMBER("unit", nil));
 			MEMBER("unit", nil) removeWeaponGlobal (handgunWeapon MEMBER("unit", nil));
-		};
+		 };
 
 		PUBLIC FUNCTION("","getInventory") {
 			private ["_array", "_unit"];
