@@ -20,15 +20,25 @@
 
 	--------------------------------------------------------------------------------------------------------------
 
-	Function: _inventory = ["new", []] call OO_INVENTORY;
+	Function: _inventory = ["new", _unit] call OO_INVENTORY;
 	create a new OO_INVENTORY object
 		
 	Parameters:
-		array - empty array
+		_unit : unit object wich we will manage inventory
 
 	--------------------------------------------------------------------------------------------------------------
 
-	Function: = ["getInventory", _object] call _inventory;
+	Function: ["setUnit", _unit] call _inventory;
+	Set a new unit object
+		
+	Parameters:
+		_unit : unit object wich we will manage inventory
+
+	Return : nothing
+
+	--------------------------------------------------------------------------------------------------------------	
+
+	Function: _array = "getInventory" call _inventory;
 	Get inventory of the unit object
 		
 	Parameters:
@@ -59,8 +69,6 @@
 		
 	Parameters:
 		_array containing :
-		0 - unit object - object who will load the inventory
-		1 - inventory array containing :
 			0 - headgear
 			1 - goggles
 			2 - uniform
@@ -82,12 +90,10 @@
 
 	--------------------------------------------------------------------------------------------------------------
 	
-	Function: ["clearInventory", _object] call _inventory;
+	Function: "clearInventory" call _inventory;
 	Clear inventory of the unit object
 	
-	Parameters:
-		_object -  unit object who will load the inventory
-	
+	Parameters: nothing
 	Return : nothing
 
 	--------------------------------------------------------------------------------------------------------------
