@@ -141,7 +141,11 @@
 	"clearUniform" call _inventory;	
 	"clearUniformItems" call _inventory;
 	"clearUniformWeapons" call _inventory;
-	hint "clear Backpack + vest + uniform";
+	hint "clear content of : Backpack + vest + uniform";
+	sleep 2;	
+
+	["setInventory", _array] call _inventory;
+	hint "set same Inventory as begining";
 	sleep 2;	
 
 	"takeOffVest" call _inventory;
