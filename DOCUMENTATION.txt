@@ -37,6 +37,86 @@
 	Return : nothing
 
 	--------------------------------------------------------------------------------------------------------------
+	
+	Function: "clearInventory" call _inventory;
+	Clear all inventory of the unit object
+	
+	Parameters: nothing
+	Return : nothing
+
+	--------------------------------------------------------------------------------------------------------------
+	
+	Function: "clearBackPack" call _inventory;
+	Clear backpack inventory of the unit object
+	
+	Parameters: nothing
+	Return : nothing
+
+	--------------------------------------------------------------------------------------------------------------
+	
+	Function: "clearBackpackItems" call _inventory;
+	Clear items of backpack inventory (without weapons)
+	
+	Parameters: nothing
+	Return : nothing
+
+	--------------------------------------------------------------------------------------------------------------
+	
+	Function: "clearBackpackWeapons" call _inventory;
+	Clear weapons of backpack inventory (without items)
+	
+	Parameters: nothing
+	Return : nothing
+
+	--------------------------------------------------------------------------------------------------------------
+	
+	Function: "clearUniform" call _inventory;
+	Clear uniform inventory of the unit object
+	
+	Parameters: nothing
+	Return : nothing
+
+	--------------------------------------------------------------------------------------------------------------
+	
+	Function: "clearUniformItems" call _inventory;
+	Clear items of uniform inventory (without weapons)
+	
+	Parameters: nothing
+	Return : nothing
+
+	--------------------------------------------------------------------------------------------------------------
+	
+	Function: "clearUniformWeapons" call _inventory;
+	Clear weapons of uniform inventory (without items)
+	
+	Parameters: nothing
+	Return : nothing
+
+	--------------------------------------------------------------------------------------------------------------
+	
+	Function: "clearVest" call _inventory;
+	Clear vest inventory of the unit object
+	
+	Parameters: nothing
+	Return : nothing
+
+	--------------------------------------------------------------------------------------------------------------
+	
+	Function: "clearVestItems" call _inventory;
+	Clear items of vest inventory (without weapons)
+	
+	Parameters: nothing
+	Return : nothing
+
+	--------------------------------------------------------------------------------------------------------------
+	
+	Function: "clearVestWeapons" call _inventory;
+	Clear weapons of vest inventory (without items)
+	
+	Parameters: nothing
+	Return : nothing
+
+	--------------------------------------------------------------------------------------------------------------
 
 	Function: _type = "getPrimaryWeaponType" call _inventory;
 	Get the primary weapon type
@@ -237,14 +317,6 @@
 			14- handgunitems
 			15- assigneditems
 
-	Return : nothing
-
-	--------------------------------------------------------------------------------------------------------------
-	
-	Function: "clearInventory" call _inventory;
-	Clear inventory of the unit object
-	
-	Parameters: nothing
 	Return : nothing
 
 	--------------------------------------------------------------------------------------------------------------
