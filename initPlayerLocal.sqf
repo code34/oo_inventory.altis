@@ -5,6 +5,9 @@
 
 	sleep 2;
 
+	hint format ["OO_INVENTORY version: %1", "getVersion" call _inventory];
+	sleep 2;
+
 	// get bullet
 	_result = ["getAmmoCountByWeapon", "primaryweapon"] call _inventory;
 	hint format ["count bullets for primary weapon %1", _result];
