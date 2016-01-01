@@ -31,7 +31,10 @@
 	You can share, modify, distribute this script but don't remove the licence and the name of the original author
 
 	logs:
-		0.3	- fix interface
+		0.3
+			- add setUnit method
+			- add hasX methods
+			- fix interface
 			- fix magazine methods/locality
 			- fix gps
 			- update documentation
