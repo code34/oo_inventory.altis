@@ -31,6 +31,8 @@
 	You can share, modify, distribute this script but don't remove the licence and the name of the original author
 
 	logs:
+		0.4
+			- fix addweapon for items
 		0.3	
 			- add bullets count methods
 			- add clear methods
