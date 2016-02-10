@@ -610,8 +610,7 @@
 	
 			{
 				if(_x != "") then {
-					_unit additem _x;
-					_unit assignItem _x;
+					_object addweapon _x;
 				};
 			} foreach _assigneditems;
 
