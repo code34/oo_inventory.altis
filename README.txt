@@ -33,6 +33,10 @@
 	logs:
 		0.4
 			- fix addweapon for items
+			- fix typo
+			- add isequalto instead ==
+			- use native array method
+			- fix setinventory bug
 		0.3	
 			- add bullets count methods
 			- add clear methods
