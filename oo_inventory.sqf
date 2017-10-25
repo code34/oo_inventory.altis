@@ -28,7 +28,7 @@
 		};
 
 		PUBLIC FUNCTION("","getVersion") {
-			"0.3";
+			"0.4";
 		};
 
 		PUBLIC FUNCTION("object","setUnit") {
@@ -56,7 +56,7 @@
 		PUBLIC FUNCTION("","clearBackpackItems") {
 			{
 				if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
-					 MEMBER("unit", nil) removeItemFromBackpack	 _x;
+					 MEMBER("unit", nil) removeItemFromBackpack _x;
 				};
 				sleep 0.001;
 			} foreach (backpackItems MEMBER("unit", nil));
@@ -65,7 +65,7 @@
 		PUBLIC FUNCTION("","clearBackpackWeapons") {
 			{
 				if(!(_x isEqualTo "") and !(_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
-					 MEMBER("unit", nil) removeItemFromBackpack	 _x;
+					 MEMBER("unit", nil) removeItemFromBackpack _x;
 				};
 				sleep 0.001;
 			} foreach (backpackItems MEMBER("unit", nil));
@@ -106,7 +106,7 @@
 		PUBLIC FUNCTION("","clearUniformItems") {
 			{
 				if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
-					 MEMBER("unit", nil) removeItemFromUniform	 _x;
+					 MEMBER("unit", nil) removeItemFromUniform _x;
 				};
 				sleep 0.001;
 			} foreach (uniformItems MEMBER("unit", nil));
@@ -115,7 +115,7 @@
 		PUBLIC FUNCTION("","clearUniformWeapons") {
 			{
 				if(!(_x isEqualTo "") and !(_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
-					 MEMBER("unit", nil) removeItemFromUniform	 _x;
+					 MEMBER("unit", nil) removeItemFromUniform _x;
 				};
 				sleep 0.001;
 			} foreach (uniformItems MEMBER("unit", nil));
@@ -127,7 +127,7 @@
 			_holder setpos (position MEMBER("unit", nil));
 
 			{
-				if(typename _x == "STRING") then {
+				if(_x isEqualType "") then {
 					_holder addItemCargoGlobal [_x , 1] ;
 				} else {
 					{
@@ -286,7 +286,7 @@
 
 			{
 				if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
-					_array = _array + [_x];
+					_array pushBack _x;
 				};
 				sleep 0.001;
 			} foreach (uniformItems MEMBER("unit", nil));
@@ -300,7 +300,7 @@
 
 			{
 				if(!(_x isEqualTo "") and !(_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
-					_array = _array + [_x];
+					_array pushBack _x;
 				};
 				sleep 0.001;
 			} foreach (uniformItems MEMBER("unit", nil));
@@ -314,7 +314,7 @@
 
 			{
 				if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
-					_array = _array + [_x];
+					_array pushBack _x;
 				};
 				sleep 0.001;
 			} foreach (vestItems MEMBER("unit", nil));
@@ -328,7 +328,7 @@
 
 			{
 				if(!(_x isEqualTo "") and !(_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
-					_array = _array + [_x];
+					_array pushBack _x;
 				};
 				sleep 0.001;
 			} foreach (vestItems MEMBER("unit", nil));
@@ -342,7 +342,7 @@
 
 			{
 				if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
-					_array = _array + [_x];
+					_array pushBack _x;
 				};
 				sleep 0.001;
 			} foreach (backpackItems MEMBER("unit", nil));
@@ -356,7 +356,7 @@
 
 			{
 				if(!(_x isEqualTo "") and !(_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
-					_array = _array + [_x];
+					_array pushBack _x;
 				};
 				sleep 0.001;
 			} foreach (backpackItems MEMBER("unit", nil));
@@ -406,7 +406,7 @@
 			_count = 0;
 
 			{
-				if(_x select 0 == _type)  then {
+				if((_x select 0) isEqualTo _type)  then {
 					_count = (_x select 1) + _count;
 				};
 				sleep 0.001;
@@ -418,11 +418,10 @@
 			private ["_count", "_type"];
 
 			_type = _this;
-
 			_count = 0;
 
 			{
-				if(_x select 0 == _type)  then { 
+				if((_x select 0)  isEqualTo _type)  then { 
 					_count = _count + 1;
 				};
 				sleep 0.001;
@@ -526,7 +525,7 @@
 		};
 
 		PUBLIC FUNCTION("array","setInventory") {
-			private ["_array", "_headgear", "_goggles", "_uniform", "_uniformitems", "_vest", "_vestitems", "_backpack", "_backpackitems", "_primaryweapon", "_primaryweaponitems", "_secondaryweapon", "_secondaryweaponitems",  "_handgun", "_handgunweaponitems", "_assigneditems", "_position", "_damage", "_dir", "_fullmagazine", "_unit"];
+			private ["_array", "_headgear", "_goggles", "_uniform", "_uniformitems", "_vest", "_vestitems", "_backpack", "_backpackitems", "_primaryweapon", "_primaryweaponitems", "_secondaryweapon", "_secondaryweaponitems",  "_handgunweapon", "_handgunweaponitems", "_assigneditems", "_position", "_damage", "_dir", "_fullmagazine", "_unit"];
 
 			_array = _this;
 			
@@ -610,7 +609,7 @@
 	
 			{
 				if(_x != "") then {
-					_object addweapon _x;
+					_unit addweapon _x;
 				};
 			} foreach _assigneditems;
 
