@@ -1,6 +1,6 @@
 	/*
 	Author: code34 nicolas_boiteux@yahoo.fr
-	Copyright (C) 2013-2016 Nicolas BOITEUX
+	Copyright (C) 2013-2018 Nicolas BOITEUX
 
 	CLASS OO_INVENTORY simple inventory class
 	
@@ -28,7 +28,7 @@
 		};
 
 		PUBLIC FUNCTION("","getVersion") {
-			"0.4";
+			"0.5";
 		};
 
 		PUBLIC FUNCTION("object","setUnit") {
@@ -36,9 +36,7 @@
 		};
 
 		PUBLIC FUNCTION("","clearInventory") {
-			private ["_unit"];
-
-			_unit = MEMBER("unit", nil);
+			private _unit = MEMBER("unit", nil);
 
 			removeallweapons _unit;
 			removeGoggles _unit;
@@ -122,8 +120,7 @@
 		};
 
 		PUBLIC FUNCTION("","takeOffInventory") {
-			private ["_holder"];
-			_holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
+			private _holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
 			_holder setpos (position MEMBER("unit", nil));
 
 			{
@@ -142,8 +139,7 @@
 		};
 
 		PUBLIC FUNCTION("","takeOffVest") {
-			private ["_holder"];
-			_holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
+			private _holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
 			_holder setpos (position MEMBER("unit", nil));
 			_holder addItemCargoGlobal [(vest MEMBER("unit", nil)) , 1] ;
 
@@ -156,8 +152,7 @@
 		};
 
 		PUBLIC FUNCTION("","takeOffUniform") {
-			private ["_holder"];
-			_holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
+			private _holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
 			_holder setpos (position MEMBER("unit", nil));
 			_holder addItemCargoGlobal [(uniform MEMBER("unit", nil)) , 1] ;
 
@@ -175,9 +170,7 @@
 		};
 
 		PUBLIC FUNCTION("","takeOffPrimaryWeapon") {
-			private ["_holder"];
-
-			_holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
+			private _holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
 			_holder setpos (position MEMBER("unit", nil));
 			_holder addItemCargoGlobal [(primaryWeapon MEMBER("unit", nil)) , 1] ;
 
@@ -192,9 +185,7 @@
 		};
 
 		PUBLIC FUNCTION("","takeOffSecondaryWeapon") {
-			private ["_holder"];
-
-			_holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
+			private _holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
 			_holder setpos (position MEMBER("unit", nil));
 			_holder addItemCargoGlobal [(secondaryWeapon MEMBER("unit", nil)) , 1] ;
 		
@@ -209,9 +200,7 @@
 		 };
 
 		 PUBLIC FUNCTION("","takeOffHandGun") {
-		 	private ["_holder"];
-
-			_holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
+			private _holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
 			_holder setpos (position MEMBER("unit", nil));
 			_holder addItemCargoGlobal [(handgunWeapon MEMBER("unit", nil)) , 1] ;
 
@@ -225,12 +214,10 @@
 			_holder;
 		 };
 
-		PUBLIC FUNCTION("","getInventory") {
-			private ["_array", "_unit"];
+		PUBLIC FUNCTION("","getInventory") {	
+			private _unit = MEMBER("unit", nil);
 			
-			_unit = MEMBER("unit", nil);
-			
-			_array = [
+			private _array = [
 				(headgear _unit), 
 				(goggles _unit), 
 				(uniform _unit), 
@@ -280,9 +267,7 @@
 		};
 
 		PUBLIC FUNCTION("","getUniformItems") {
-			private ["_array"];
-
-			_array = [];
+			private _array = [];
 
 			{
 				if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
@@ -294,9 +279,7 @@
 		};
 
 		PUBLIC FUNCTION("","getUniformWeapons") {
-			private ["_array"];
-
-			_array = [];
+			private _array = [];
 
 			{
 				if(!(_x isEqualTo "") and !(_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
@@ -308,9 +291,7 @@
 		};		
 
 		PUBLIC FUNCTION("","getVestItems") {
-			private ["_array"];
-
-			_array = [];
+			private _array = [];
 
 			{
 				if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
@@ -322,9 +303,7 @@
 		};
 
 		PUBLIC FUNCTION("","getVestWeapons") {
-			private ["_array"];
-
-			_array = [];
+			private _array = [];
 
 			{
 				if(!(_x isEqualTo "") and !(_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
@@ -336,9 +315,7 @@
 		};		
 
 		PUBLIC FUNCTION("","getBackPackItems") {
-			private ["_array"];
-
-			_array = [];
+			private _array = [];
 
 			{
 				if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
@@ -350,9 +327,7 @@
 		};
 
 		PUBLIC FUNCTION("","getBackPackWeapons") {
-			private ["_array"];
-
-			_array = [];
+			private _array = [];
 
 			{
 				if(!(_x isEqualTo "") and !(_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
@@ -365,9 +340,9 @@
 
 
 		PUBLIC FUNCTION("string","getAmmoLoadedType") {
-			private ["_ammo", "_type"];
+			private _ammo = "";
+			private _type = 1;
 
-			_ammo = "";
 			switch (tolower _this) do {
 				case "primaryweapon" : {
 					_type = 1;
@@ -400,10 +375,8 @@
 		};
 
 		PUBLIC FUNCTION("string","getAmmoCountByType") {
-			private ["_count", "_type"];
-
-			_type = _this;
-			_count = 0;
+			private _type = _this;
+			private _count = 0;
 
 			{
 				if((_x select 0) isEqualTo _type)  then {
@@ -415,10 +388,8 @@
 		};
 
 		PUBLIC FUNCTION("string","getMagazinesCountByType") {
-			private ["_count", "_type"];
-
-			_type = _this;
-			_count = 0;
+			private _type = _this;
+			private _count = 0;
 
 			{
 				if((_x select 0)  isEqualTo _type)  then { 
@@ -430,9 +401,8 @@
 		};
 
 		PUBLIC FUNCTION("string","getAmmoCountByWeapon") {
-			private ["_count", "_type"];
-
-			_count = 0;
+			private _count = 0;
+			private _type = "";
 
 			switch (tolower _this) do {
 				case "primaryweapon" : {
@@ -457,9 +427,8 @@
 		};
 
 		PUBLIC FUNCTION("string","getAmmoLoadedCount") {
-			private ["_count", "_type"];
-
-			_count = 0;
+			private _count = 0;
+			private _type = "";
 
 			switch (tolower _this) do {
 				case "primaryweapon" : {
@@ -525,29 +494,27 @@
 		};
 
 		PUBLIC FUNCTION("array","setInventory") {
-			private ["_array", "_headgear", "_goggles", "_uniform", "_uniformitems", "_vest", "_vestitems", "_backpack", "_backpackitems", "_primaryweapon", "_primaryweaponitems", "_secondaryweapon", "_secondaryweaponitems",  "_handgunweapon", "_handgunweaponitems", "_assigneditems", "_position", "_damage", "_dir", "_fullmagazine", "_unit"];
+			private _array = _this;
+			private _unit = MEMBER("unit", nil);
 
-			_array = _this;
-			
-			_unit = MEMBER("unit", nil);
 			MEMBER("clearInventory", _unit);
 
-			_headgear = _array select 0;
-			_goggles = _array select 1;
-			_uniform = _array select 2;
-			_uniformitems = _array select 3;
-			_vest = _array select 4;
-			_vestitems = _array select 5;
-			_backpack = _array select 6;
-			_backpackitems = _array select 7;
-			_fullmagazine = _array select 8;
-			_primaryweapon = _array select 9;
-			_primaryweaponitems = _array select 10;
-			_secondaryweapon = _array select 11;
-			_secondaryweaponitems = _array select 12;
-			_handgunweapon = _array select 13;
-			_handgunweaponitems = _array select 14;
-			_assigneditems = _array select 15;
+			private _headgear = _array select 0;
+			private _goggles = _array select 1;
+			private _uniform = _array select 2;
+			private _uniformitems = _array select 3;
+			private _vest = _array select 4;
+			private _vestitems = _array select 5;
+			private _backpack = _array select 6;
+			private _backpackitems = _array select 7;
+			private _fullmagazine = _array select 8;
+			private _primaryweapon = _array select 9;
+			private _primaryweaponitems = _array select 10;
+			private _secondaryweapon = _array select 11;
+			private _secondaryweaponitems = _array select 12;
+			private _handgunweapon = _array select 13;
+			private _handgunweaponitems = _array select 14;
+			private _assigneditems = _array select 15;
 
 			_unit addHeadgear _headgear;
 			_unit forceAddUniform _uniform;

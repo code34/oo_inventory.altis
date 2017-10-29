@@ -1,6 +1,6 @@
 	/*
 	Author: code34 nicolas_boiteux@yahoo.fr
-	Copyright (C) 2013-2016 Nicolas BOITEUX
+	Copyright (C) 2013-2018 Nicolas BOITEUX
 
 	CLASS OO_INVENTORY - a class to manage unit inventory
 	
@@ -31,6 +31,9 @@
 	You can share, modify, distribute this script but don't remove the licence and the name of the original author
 
 	logs:
+		0.5	- improve performance
+			- fix private keyword
+
 		0.4
 			- fix addweapon for items
 			- fix typo
