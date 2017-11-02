@@ -1,7 +1,8 @@
-	call compilefinal preprocessFileLineNumbers "oo_inventory.sqf";
+	call compile preprocessFileLineNumbers "oo_inventory.sqf";
 
 	// create a new inventory 
-	_inventory = ["new", toto] call OO_INVENTORY;
+	private _result = "";
+	private _inventory = ["new", toto] call OO_INVENTORY;
 
 	sleep 2;
 
