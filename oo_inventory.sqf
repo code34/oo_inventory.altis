@@ -24,20 +24,23 @@
 		PRIVATE VARIABLE("object","unit");
 
 		PUBLIC FUNCTION("object","constructor") { 
+			DEBUG(#, "OO_INVENTORY::constructor")
 			MEMBER("unit", _this);
 		};
 
 		PUBLIC FUNCTION("","getVersion") {
+			DEBUG(#, "OO_INVENTORY::getVersion")
 			"0.5";
 		};
 
 		PUBLIC FUNCTION("object","setUnit") {
+			DEBUG(#, "OO_INVENTORY::setUnit")
 			MEMBER("unit", _this);
 		};
 
 		PUBLIC FUNCTION("","clearInventory") {
+			DEBUG(#, "OO_INVENTORY::clearInventory")
 			private _unit = MEMBER("unit", nil);
-
 			removeallweapons _unit;
 			removeGoggles _unit;
 			removeHeadgear _unit;
@@ -48,10 +51,12 @@
 		};
 
 		PUBLIC FUNCTION("","clearBackpack") {
+			DEBUG(#, "OO_INVENTORY::clearBackpack")
 			clearAllItemsFromBackpack MEMBER("unit", nil);
 		};
 
 		PUBLIC FUNCTION("","clearBackpackItems") {
+			DEBUG(#, "OO_INVENTORY::clearBackpackItems")
 			{
 				if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
 					 MEMBER("unit", nil) removeItemFromBackpack _x;
@@ -61,6 +66,7 @@
 		};
 
 		PUBLIC FUNCTION("","clearBackpackWeapons") {
+			DEBUG(#, "OO_INVENTORY::clearBackpackWeapons")
 			{
 				if(!(_x isEqualTo "") and !(_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
 					 MEMBER("unit", nil) removeItemFromBackpack _x;
@@ -70,6 +76,7 @@
 		};		
 
 		PUBLIC FUNCTION("","clearVest") {
+			DEBUG(#, "OO_INVENTORY::clearVest")
 			{
 				MEMBER("unit", nil) removeItemFromVest _x;
 				sleep 0.001;
@@ -77,6 +84,7 @@
 		};
 
 		PUBLIC FUNCTION("","clearVestItems") {
+			DEBUG(#, "OO_INVENTORY::clearVestItems")
 			{
 				if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
 					 MEMBER("unit", nil) removeItemFromVest _x;
@@ -86,6 +94,7 @@
 		};
 
 		PUBLIC FUNCTION("","clearVestWeapons") {
+			DEBUG(#, "OO_INVENTORY::clearVestWeapons")
 			{
 				if(!(_x isEqualTo "") and !(_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
 					 MEMBER("unit", nil) removeItemFromVest _x;
@@ -95,6 +104,7 @@
 		};
 
 		PUBLIC FUNCTION("","clearUniform") {
+			DEBUG(#, "OO_INVENTORY::clearUniform")
 			{
 				MEMBER("unit", nil) removeItemFromUniform _x;
 				sleep 0.001;
@@ -102,6 +112,7 @@
 		};
 
 		PUBLIC FUNCTION("","clearUniformItems") {
+			DEBUG(#, "OO_INVENTORY::clearUniformItems")
 			{
 				if(!(_x isEqualTo "") and (_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
 					 MEMBER("unit", nil) removeItemFromUniform _x;
@@ -111,6 +122,7 @@
 		};
 
 		PUBLIC FUNCTION("","clearUniformWeapons") {
+			DEBUG(#, "OO_INVENTORY::clearUniformWeapons")
 			{
 				if(!(_x isEqualTo "") and !(_x isKindOf ["ItemCore", configFile >> "CfgWeapons"] )) then {
 					 MEMBER("unit", nil) removeItemFromUniform _x;
@@ -120,9 +132,9 @@
 		};
 
 		PUBLIC FUNCTION("","takeOffInventory") {
+			DEBUG(#, "OO_INVENTORY::takeOffInventory")
 			private _holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
 			_holder setpos (position MEMBER("unit", nil));
-
 			{
 				if(_x isEqualType "") then {
 					_holder addItemCargoGlobal [_x , 1] ;
@@ -139,10 +151,10 @@
 		};
 
 		PUBLIC FUNCTION("","takeOffVest") {
+			DEBUG(#, "OO_INVENTORY::takeOffVest")
 			private _holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
 			_holder setpos (position MEMBER("unit", nil));
 			_holder addItemCargoGlobal [(vest MEMBER("unit", nil)) , 1] ;
-
 			{
 				_holder addItemCargoGlobal [_x , 1] ;
 				sleep 0.001;
@@ -152,6 +164,7 @@
 		};
 
 		PUBLIC FUNCTION("","takeOffUniform") {
+			DEBUG(#, "OO_INVENTORY::takeOffUniform")
 			private _holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
 			_holder setpos (position MEMBER("unit", nil));
 			_holder addItemCargoGlobal [(uniform MEMBER("unit", nil)) , 1] ;
@@ -164,12 +177,14 @@
 			_holder;
 		};
 
-		PUBLIC FUNCTION("","takeOffBackPack") {	
+		PUBLIC FUNCTION("","takeOffBackPack") {
+			DEBUG(#, "OO_INVENTORY::takeOffBackPack")
 			MEMBER("unit", nil) addBackpack (backpack MEMBER("unit", nil));
 			removeBackpack MEMBER("unit", nil);
 		};
 
 		PUBLIC FUNCTION("","takeOffPrimaryWeapon") {
+			DEBUG(#, "OO_INVENTORY::takeOffPrimaryWeapon")
 			private _holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
 			_holder setpos (position MEMBER("unit", nil));
 			_holder addItemCargoGlobal [(primaryWeapon MEMBER("unit", nil)) , 1] ;
@@ -185,6 +200,7 @@
 		};
 
 		PUBLIC FUNCTION("","takeOffSecondaryWeapon") {
+			DEBUG(#, "OO_INVENTORY::takeOffSecondaryWeapon")
 			private _holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
 			_holder setpos (position MEMBER("unit", nil));
 			_holder addItemCargoGlobal [(secondaryWeapon MEMBER("unit", nil)) , 1] ;
@@ -200,6 +216,7 @@
 		 };
 
 		 PUBLIC FUNCTION("","takeOffHandGun") {
+		 	DEBUG(#, "OO_INVENTORY::takeOffHandGun")
 			private _holder = "groundweaponholder" createVehicle position MEMBER("unit", nil);
 			_holder setpos (position MEMBER("unit", nil));
 			_holder addItemCargoGlobal [(handgunWeapon MEMBER("unit", nil)) , 1] ;
@@ -215,6 +232,7 @@
 		 };
 
 		PUBLIC FUNCTION("","getInventory") {	
+			DEBUG(#, "OO_INVENTORY::getInventory")
 			private _unit = MEMBER("unit", nil);
 			
 			private _array = [
@@ -239,34 +257,42 @@
 		};
 
 		PUBLIC FUNCTION("","getPrimaryWeaponType") {
+			DEBUG(#, "OO_INVENTORY::getPrimaryWeaponType")
 			primaryWeapon MEMBER("unit", nil);
 		};
 
 		PUBLIC FUNCTION("","getSecondaryWeaponType") {
+			DEBUG(#, "OO_INVENTORY::getSecondaryWeaponType")
 			secondaryWeapon MEMBER("unit", nil);
 		};
 
 		PUBLIC FUNCTION("","getHandGunType") {
+			DEBUG(#, "OO_INVENTORY::getHandGunType")
 			handgunWeapon MEMBER("unit", nil);
 		};
 
 		PUBLIC FUNCTION("","getBackPackType") {
+			DEBUG(#, "OO_INVENTORY::getBackPackType")
 			backpack MEMBER("unit", nil);
 		};
 
 		PUBLIC FUNCTION("","getVestType") {
+			DEBUG(#, "OO_INVENTORY::getVestType")
 			vest MEMBER("unit", nil);
 		};
 
 		PUBLIC FUNCTION("","getUniformType") {
+			DEBUG(#, "OO_INVENTORY::getUniformType")
 			uniform MEMBER("unit", nil);
 		};
 
 		PUBLIC FUNCTION("","getBackPack") {
+			DEBUG(#, "OO_INVENTORY::getBackPack")
 			unitBackpack MEMBER("unit", nil);
 		};
 
 		PUBLIC FUNCTION("","getUniformItems") {
+			DEBUG(#, "OO_INVENTORY::getUniformItems")
 			private _array = [];
 
 			{
@@ -279,6 +305,7 @@
 		};
 
 		PUBLIC FUNCTION("","getUniformWeapons") {
+			DEBUG(#, "OO_INVENTORY::getUniformWeapons")
 			private _array = [];
 
 			{
@@ -291,6 +318,7 @@
 		};		
 
 		PUBLIC FUNCTION("","getVestItems") {
+			DEBUG(#, "OO_INVENTORY::getVestItems")
 			private _array = [];
 
 			{
@@ -303,6 +331,7 @@
 		};
 
 		PUBLIC FUNCTION("","getVestWeapons") {
+			DEBUG(#, "OO_INVENTORY::getVestWeapons")
 			private _array = [];
 
 			{
@@ -315,6 +344,7 @@
 		};		
 
 		PUBLIC FUNCTION("","getBackPackItems") {
+			DEBUG(#, "OO_INVENTORY::getBackPackItems")
 			private _array = [];
 
 			{
@@ -327,6 +357,7 @@
 		};
 
 		PUBLIC FUNCTION("","getBackPackWeapons") {
+			DEBUG(#, "OO_INVENTORY::getBackPackWeapons")
 			private _array = [];
 
 			{
@@ -340,29 +371,16 @@
 
 
 		PUBLIC FUNCTION("string","getAmmoLoadedType") {
+			DEBUG(#, "OO_INVENTORY::getAmmoLoadedType")
 			private _ammo = "";
 			private _type = 1;
 
 			switch (tolower _this) do {
-				case "primaryweapon" : {
-					_type = 1;
-				};
-
-				case "secondaryweapon" : {
-					_type = 4;
-				};
-
-				case "handgun" : {
-					_type = 2;
-				};
-
-				case "grenade" : {
-					_type = 0;
-				};
-
-				default {
-					_type = 1;
-				};
+				case "primaryweapon" : { _type = 1;};
+				case "secondaryweapon" : { _type = 4; 	};
+				case "handgun" : { _type = 2;};
+				case "grenade" : { _type = 0; };
+				default { _type = 1; };
 			};
 
 			{
@@ -375,6 +393,7 @@
 		};
 
 		PUBLIC FUNCTION("string","getAmmoCountByType") {
+			DEBUG(#, "OO_INVENTORY::getAmmoCountByType")
 			private _type = _this;
 			private _count = 0;
 
@@ -388,6 +407,7 @@
 		};
 
 		PUBLIC FUNCTION("string","getMagazinesCountByType") {
+			DEBUG(#, "OO_INVENTORY::getMagazinesCountByType")
 			private _type = _this;
 			private _count = 0;
 
@@ -401,25 +421,15 @@
 		};
 
 		PUBLIC FUNCTION("string","getAmmoCountByWeapon") {
+			DEBUG(#, "OO_INVENTORY::getAmmoCountByWeapon")
 			private _count = 0;
 			private _type = "";
 
 			switch (tolower _this) do {
-				case "primaryweapon" : {
-					_type = (primaryWeaponMagazine MEMBER("unit", nil)) select 0;
-				};
-
-				case "secondaryweapon" : {
-					_type = (secondaryWeaponMagazine MEMBER("unit", nil)) select 0;
-				};
-
-				case "handgun" : {
-					_type = (handgunMagazine MEMBER("unit", nil)) select 0;
-				};
-
-				default {
-					_type = (primaryWeaponMagazine MEMBER("unit", nil)) select 0;
-				};
+				case "primaryweapon" : { _type = (primaryWeaponMagazine MEMBER("unit", nil)) select 0; };
+				case "secondaryweapon" : { _type = (secondaryWeaponMagazine MEMBER("unit", nil)) select 0; };
+				case "handgun" : { _type = (handgunMagazine MEMBER("unit", nil)) select 0; };
+				default { _type = (primaryWeaponMagazine MEMBER("unit", nil)) select 0; };
 			};
 
 			if(isnil "_type") then {_type = "";};
@@ -427,29 +437,16 @@
 		};
 
 		PUBLIC FUNCTION("string","getAmmoLoadedCount") {
+			DEBUG(#, "OO_INVENTORY::getAmmoLoadedCount")
 			private _count = 0;
 			private _type = "";
 
 			switch (tolower _this) do {
-				case "primaryweapon" : {
-					_type = 1;
-				};
-
-				case "secondaryweapon" : {
-					_type = 4;
-				};
-
-				case "handgun" : {
-					_type = 2;
-				};
-
-				case "grenade" : {
-					_type = 0;
-				};
-
-				default {
-					_type = 1;
-				};
+				case "primaryweapon" : {_type = 1; };
+				case "secondaryweapon" : { _type = 4;	};
+				case "handgun" : { _type = 2;};
+				case "grenade" : {_type = 0;};
+				default {_type = 1;};
 			};
 
 			{
@@ -462,43 +459,50 @@
 		};
 
 		PUBLIC FUNCTION("","hasBackPack") {
+			DEBUG(#, "OO_INVENTORY::hasBackPack")
 			if(backpack MEMBER("unit", nil) isEqualTo "") then { false;} else {true;};
 		};
 
 		PUBLIC FUNCTION("","hasVest") {
+			DEBUG(#, "OO_INVENTORY::hasVest")
 			if(vest MEMBER("unit", nil) isEqualTo "") then { false;} else {true;};
 		};
 
 		PUBLIC FUNCTION("","hasUniform") {
+			DEBUG(#, "OO_INVENTORY::hasUniform")
 			if(uniform MEMBER("unit", nil) isEqualTo "") then { false;} else {true;};
 		};
 
 		PUBLIC FUNCTION("","hasPrimaryWeapon") {
+			DEBUG(#, "OO_INVENTORY::hasPrimaryWeapon")
 			if(primaryWeapon MEMBER("unit", nil) isEqualTo "") then { false;} else {true;};
 		};
 
 		PUBLIC FUNCTION("","hasSecondaryWeapon") {
+			DEBUG(#, "OO_INVENTORY::hasSecondaryWeapon")
 			if(secondaryWeapon MEMBER("unit", nil) isEqualTo "") then { false;} else {true;};
 		};
 
 		PUBLIC FUNCTION("","hasHandGun") {
+			DEBUG(#, "OO_INVENTORY::hasHandGun")
 			if(handgunWeapon MEMBER("unit", nil) isEqualTo "") then { false;} else {true;};
 		};
 
 		PUBLIC FUNCTION("","hasHeadGear") {
+			DEBUG(#, "OO_INVENTORY::hasHeadGear")
 			if(headgear MEMBER("unit", nil) isEqualTo "") then { false;} else {true;};
 		};
 
 		PUBLIC FUNCTION("","hasGoggles") {
+			DEBUG(#, "OO_INVENTORY::hasGoggles")
 			if(goggles MEMBER("unit", nil) isEqualTo "") then { false;} else {true;};
 		};
 
 		PUBLIC FUNCTION("array","setInventory") {
+			DEBUG(#, "OO_INVENTORY::setInventory")
 			private _array = _this;
 			private _unit = MEMBER("unit", nil);
-
 			MEMBER("clearInventory", _unit);
-
 			private _headgear = _array select 0;
 			private _goggles = _array select 1;
 			private _uniform = _array select 2;
@@ -567,7 +571,6 @@
 	
 
 			_unit addweapon _handgunweapon;
-	
 			{
 				if(_x != "") then {
 					_unit addHandgunItem _x;
@@ -579,11 +582,11 @@
 					_unit addweapon _x;
 				};
 			} foreach _assigneditems;
-
 			if (needReload _unit == 1) then {reload _unit};
 		};
 
 		PUBLIC FUNCTION("","deconstructor") {
+			DEBUG(#, "OO_INVENTORY::deconstructor")
 			DELETE_VARIABLE("unit");
 		 };
 	ENDCLASS;
